@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .admin-panel-container {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .admin-panel-container h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .admin-panel-container h3 {
+            color: #34495e;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        /* Different quiz card colors */
+        .quiz-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #5f9ea0;
+        }
+
+        .quiz-card:nth-child(1) {
+            background-color: #4e8f88; /* Orange */
+        }
+
+        .quiz-card:nth-child(2) {
+            background-color: #8e44ad; /* Purple */
+        }
+
+        .quiz-card:nth-child(3) {
+            background-color: #16a085; /* Teal */
+        }
+
+        .quiz-card:nth-child(4) {
+            background-color: #e74c3c; /* Red */
+        }
+
+        .quiz-card:nth-child(5) {
+            background-color: #3498db; /* Blue */
+        }
+
+        .quiz-card:nth-child(6) {
+            background-color: #2ecc71; /* Green */
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .quiz-card .card-body {
+            padding: 20px;
+        }
+
+        .quiz-card .card-title {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: capitalize;
+        }
+
+        .quiz-card .action-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Equal and beautiful buttons */
+        .quiz-card .btn {
+            flex: 1;
+            margin: 0 5px;
+            font-weight: bold;
+            padding: 12px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .quiz-card .btn-warning {
+            background-color:rgb(213, 213, 56);
+            border: none;
+            color: #2c3e50;
+        }
+
+        .quiz-card .btn-warning:hover {
+            background-color: rgb(225, 230, 146);
+            transform: translateY(-2px);
+        }
+
+        .quiz-card .btn-danger {
+            background-color:rgb(189, 129, 169);
+            border: none;
+            color: white;
+        }
+
+        .quiz-card .btn-danger:hover {
+            background-color:rgb(179, 70, 123);
+            transform: translateY(-2px);
+        }
+
+        /* Add New Quiz button styling */
+        .add-quiz-btn {
+            background-color: #5f9ea0;
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 40px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            margin: 40px auto;
+            display: block;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .add-quiz-btn:hover {
+            background-color: #4e8f88;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive grid */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .col-md-4 {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+    </style>
+
+    <div class="admin-panel-container">
+        <h2>Admin</h2>
+        <h3>Manage Quizzes</h3>
+        <div class="row">
+            {% for quiz in quizzes %}
+                <div class="col-md-4">
+                    <div class="card quiz-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ quiz.title }}</h5>
+                            <div class="action-buttons">
+                                <a href="{{ url_for('admin_edit_quiz', quiz_id=quiz.id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ url_for('admin_delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <a href="{{ url_for('admin_add_quiz') }}" class="add-quiz-btn">Add New Quiz</a>
+    </div>
+{% endblock %}
