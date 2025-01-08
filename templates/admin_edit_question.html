@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Question - Quiz App{% endblock %}
+
+{% block content %}
+<h2>Edit Question</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="question_text" class="form-label">Question</label>
+        <input type="text" name="question_text" id="question_text" class="form-control" value="{{ question.text }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="option_a" class="form-label">Option A</label>
+        <input type="text" name="option_a" id="option_a" class="form-control" value="{{ answers[0].text }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="option_b" class="form-label">Option B</label>
+        <input type="text" name="option_b" id="option_b" class="form-control" value="{{ answers[1].text }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="option_c" class="form-label">Option C</label>
+        <input type="text" name="option_c" id="option_c" class="form-control" value="{{ answers[2].text }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="option_d" class="form-label">Option D</label>
+        <input type="text" name="option_d" id="option_d" class="form-control" value="{{ answers[3].text }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="correct_answer" class="form-label">Correct Answer</label>
+        <select name="correct_answer" id="correct_answer" class="form-control" required>
+            <option value="A" {% if question.correct_answer == 'A' %}selected{% endif %}>Option A</option>
+            <option value="B" {% if question.correct_answer == 'B' %}selected{% endif %}>Option B</option>
+            <option value="C" {% if question.correct_answer == 'C' %}selected{% endif %}>Option C</option>
+            <option value="D" {% if question.correct_answer == 'D' %}selected{% endif %}>Option D</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-warning">Update Question</button>
+</form>
+{% endblock %}
+
