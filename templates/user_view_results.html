@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}View Results{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #5f9ea0;
+        }
+
+        /* Results List */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Score Display */
+        .score {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        /* Responsive styling */
+        @media screen and (max-width: 768px) {
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            li {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+    </style>
+
+    <div class="container">
+        <h2>Your Quiz Results</h2>
+        
+        <ul>
+            {% for result in results %}
+                <li>
+                    <span>{{ result.quiz.title }}</span>
+                    <span class="score">Score: {{ result.score }}%</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
