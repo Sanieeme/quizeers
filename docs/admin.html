@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Admin Dashboard | Quizeers</title>
+
+
+
+<link 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+rel="stylesheet">
+
+
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/admin.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+
+<nav class="navbar navbar-dark bg-dark">
+
+
+<div class="container">
+
+
+<a class="navbar-brand fw-bold"
+href="index.html">
+
+
+<i class="bi bi-shield-lock-fill"></i>
+
+Quizeers Admin
+
+
+</a>
+
+
+
+
+<a href="index.html"
+class="btn btn-outline-light">
+
+
+Exit Admin
+
+
+</a>
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
+<!-- DASHBOARD -->
+
+
+<section class="admin-section">
+
+
+<div class="container">
+
+
+
+<h1 class="fw-bold mb-5">
+
+Admin Dashboard
+
+</h1>
+
+
+
+
+
+
+
+<!-- STATISTICS -->
+
+
+<div class="row g-4">
+
+
+
+<div class="col-md-3">
+
+
+<div class="admin-card">
+
+
+<i class="bi bi-journal-text"></i>
+
+
+<h2 id="totalQuiz">
+
+25
+
+</h2>
+
+
+<p>
+
+Total Quizzes
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+
+<div class="admin-card">
+
+
+<i class="bi bi-people-fill"></i>
+
+
+<h2 id="users">
+
+340
+
+</h2>
+
+
+<p>
+
+Registered Users
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+
+<div class="admin-card">
+
+
+<i class="bi bi-bar-chart-fill"></i>
+
+
+<h2>
+
+85%
+
+</h2>
+
+
+<p>
+
+Average Score
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-md-3">
+
+
+<div class="admin-card">
+
+
+<i class="bi bi-clock-history"></i>
+
+
+<h2>
+
+1200
+
+</h2>
+
+
+<p>
+
+Quiz Attempts
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ADMIN ACTIONS -->
+
+
+<h2 class="mt-5 mb-4">
+
+Management
+
+</h2>
+
+
+
+
+<div class="row g-4">
+
+
+
+
+
+<div class="col-md-4">
+
+
+<div class="management-card">
+
+
+<i class="bi bi-plus-circle"></i>
+
+
+<h4>
+
+Create Quiz
+
+</h4>
+
+
+
+<p>
+
+Add new quizzes and questions.
+
+</p>
+
+
+
+<a href="admin_add_quiz.html"
+
+class="btn btn-primary">
+
+Create
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-md-4">
+
+
+<div class="management-card">
+
+
+<i class="bi bi-pencil-square"></i>
+
+
+<h4>
+
+Manage Quizzes
+
+</h4>
+
+
+<p>
+
+Edit or remove quizzes.
+
+</p>
+
+
+
+<a href="admin_quizzes.html"
+
+class="btn btn-warning">
+
+Manage
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="col-md-4">
+
+
+<div class="management-card">
+
+
+<i class="bi bi-graph-up"></i>
+
+
+<h4>
+
+View Analytics
+
+</h4>
+
+
+<p>
+
+Monitor user performance.
+
+</p>
+
+
+
+<a href="admin_results.html"
+
+class="btn btn-success">
+
+Analytics
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- RECENT ACTIVITY -->
+
+
+<h2 class="mt-5">
+
+Recent Activity
+
+</h2>
+
+
+
+<table class="table table-hover mt-3">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>User</th>
+
+<th>Action</th>
+
+<th>Date</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+
+john@gmail.com
+
+</td>
+
+
+<td>
+
+Completed Python Quiz
+
+</td>
+
+
+<td>
+
+20 July 2026
+
+</td>
+
+
+</tr>
+
+
+
+
+
+<tr>
+
+<td>
+
+mary@gmail.com
+
+</td>
+
+
+<td>
+
+Registered Account
+
+</td>
+
+
+<td>
+
+19 July 2026
+
+</td>
+
+
+</tr>
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<footer class="bg-dark text-white py-4">
+
+
+<div class="container text-center">
+
+
+Quizeers Admin Panel
+
+
+</div>
+
+
+</footer>
+
+
+
+
+<script src="js/admin.js"></script>
+
+
+
+</body>
+
+
+</html>

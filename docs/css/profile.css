@@ -1,0 +1,282 @@
+/* ==========================
+   Global Styles
+========================== */
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#f8fcfd,#eef9fa);
+    color:#2f3b45;
+}
+
+/* ==========================
+   Profile Header
+========================== */
+
+.profile-header{
+    background:linear-gradient(135deg,#5f9ea0,#7bc6c9);
+    padding:70px 0;
+    position:relative;
+    overflow:hidden;
+}
+
+.profile-header::before{
+    content:"";
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:220px;
+    height:220px;
+    background:rgba(255,255,255,.12);
+    border-radius:50%;
+}
+
+.profile-header::after{
+    content:"";
+    position:absolute;
+    bottom:-90px;
+    left:-90px;
+    width:250px;
+    height:250px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+}
+
+/* ==========================
+   Main Profile Card
+========================== */
+
+.profile-card{
+    background:white;
+    padding:45px;
+    border-radius:30px;
+    box-shadow:0 20px 45px rgba(95,158,160,.18);
+    transition:.35s ease;
+}
+
+.profile-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 28px 60px rgba(95,158,160,.22);
+}
+
+/* ==========================
+   Profile Image
+========================== */
+
+.profile-image{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.profile-image i{
+    font-size:130px;
+    color:#5f9ea0;
+    background:#eef9fa;
+    padding:30px;
+    border-radius:50%;
+    box-shadow:0 10px 30px rgba(95,158,160,.20);
+}
+
+.profile-image h3{
+    margin-top:20px;
+    font-weight:700;
+    color:#35545b;
+}
+
+.profile-image p{
+    color:#7b8a93;
+}
+
+/* ==========================
+   Statistics
+========================== */
+
+.stat-card{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(95,158,160,.12);
+    transition:.3s ease;
+    border-top:5px solid #5f9ea0;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(95,158,160,.18);
+}
+
+.stat-card i{
+    font-size:48px;
+    color:#5f9ea0;
+    margin-bottom:15px;
+}
+
+.stat-card h2{
+    font-size:42px;
+    font-weight:700;
+    color:#35545b;
+    margin-bottom:8px;
+}
+
+.stat-card p{
+    color:#7b8a93;
+    font-size:15px;
+}
+
+/* ==========================
+   Profile Information
+========================== */
+
+.profile-section{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    margin-top:30px;
+    box-shadow:0 12px 30px rgba(95,158,160,.10);
+}
+
+.profile-section h3{
+    color:#35545b;
+    font-weight:700;
+    margin-bottom:20px;
+    border-left:5px solid #f2a2b8;
+    padding-left:15px;
+}
+
+.profile-section p{
+    color:#555;
+    line-height:1.8;
+}
+
+/* ==========================
+   Progress Bar
+========================== */
+
+.progress{
+    height:18px;
+    border-radius:30px;
+    background:#dceff1;
+    overflow:hidden;
+    margin-top:15px;
+}
+
+.progress-bar{
+    background:linear-gradient(90deg,#5f9ea0,#8fd3d4);
+    border-radius:30px;
+    transition:width .8s ease;
+}
+
+/* ==========================
+   Achievements
+========================== */
+
+.achievement{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    text-align:center;
+    box-shadow:0 12px 30px rgba(95,158,160,.12);
+    transition:.3s ease;
+    height:100%;
+}
+
+.achievement:hover{
+    transform:translateY(-8px);
+    background:#fef9fb;
+}
+
+.achievement i{
+    font-size:48px;
+    color:#f2a2b8;
+    margin-bottom:18px;
+}
+
+.achievement h5{
+    font-weight:600;
+    color:#35545b;
+    margin-bottom:10px;
+}
+
+.achievement p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.btn-primary{
+    background:#5f9ea0;
+    border:none;
+    border-radius:30px;
+    padding:12px 30px;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.btn-primary:hover{
+    background:#4b7f8a;
+    transform:translateY(-2px);
+}
+
+.btn-outline-primary{
+    border:2px solid #5f9ea0;
+    color:#5f9ea0;
+    border-radius:30px;
+    padding:12px 30px;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.btn-outline-primary:hover{
+    background:#5f9ea0;
+    color:white;
+}
+
+/* ==========================
+   Lists
+========================== */
+
+.list-group-item{
+    border:none;
+    padding:18px 0;
+    border-bottom:1px solid #edf2f4;
+}
+
+.list-group-item:last-child{
+    border-bottom:none;
+}
+
+.list-group-item strong{
+    color:#35545b;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+    .profile-header{
+        padding:50px 0;
+    }
+
+    .profile-card{
+        padding:30px;
+    }
+
+    .profile-image i{
+        font-size:90px;
+        padding:20px;
+    }
+
+    .stat-card{
+        margin-bottom:20px;
+    }
+
+    .profile-section{
+        padding:25px;
+    }
+
+}

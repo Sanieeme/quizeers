@@ -1,0 +1,320 @@
+/* ==========================
+   Global
+========================== */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#f8fcfd,#eef9fa);
+    color:#2f3b45;
+}
+
+/* ==========================
+   Quiz Header
+========================== */
+
+.quiz-header{
+    background:linear-gradient(135deg,#5f9ea0,#7bc6c9);
+    color:white;
+    padding:80px 0;
+    position:relative;
+    overflow:hidden;
+}
+
+.quiz-header::before{
+    content:"";
+    position:absolute;
+    top:-80px;
+    right:-80px;
+    width:220px;
+    height:220px;
+    background:rgba(255,255,255,.10);
+    border-radius:50%;
+}
+
+.quiz-header::after{
+    content:"";
+    position:absolute;
+    bottom:-100px;
+    left:-100px;
+    width:260px;
+    height:260px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+}
+
+/* ==========================
+   Quiz Cards
+========================== */
+
+.quiz-card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(95,158,160,.12);
+    transition:.35s ease;
+    height:100%;
+}
+
+.quiz-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(95,158,160,.20);
+}
+
+.quiz-image{
+    height:170px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#5f9ea0,#8fd3d4);
+    color:white;
+    font-size:65px;
+}
+
+.quiz-card .card-body{
+    padding:28px;
+}
+
+.quiz-card h4{
+    color:#35545b;
+    font-weight:700;
+}
+
+.quiz-card p{
+    color:#6c7b84;
+}
+
+/* ==========================
+   Quiz Information
+========================== */
+
+.quiz-info{
+    display:flex;
+    justify-content:space-between;
+    margin:20px 0;
+    padding:12px 18px;
+    background:#f8fcfd;
+    border-radius:15px;
+}
+
+.quiz-info span{
+    color:#5f9ea0;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* ==========================
+   Quiz Box
+========================== */
+
+.quiz-box{
+    background:white;
+    padding:45px;
+    border-radius:30px;
+    box-shadow:0 20px 45px rgba(95,158,160,.12);
+}
+
+.quiz-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    font-weight:600;
+    color:#35545b;
+}
+
+/* ==========================
+   Timer
+========================== */
+
+.timer{
+    background:#fff1f4;
+    color:#f2a2b8;
+    padding:10px 20px;
+    border-radius:30px;
+    font-weight:700;
+    box-shadow:0 5px 15px rgba(242,162,184,.20);
+}
+
+/* ==========================
+   Progress Bar
+========================== */
+
+.progress{
+    height:18px;
+    border-radius:30px;
+    background:#dceff1;
+    overflow:hidden;
+}
+
+.progress-bar{
+    background:linear-gradient(90deg,#5f9ea0,#8fd3d4);
+    border-radius:30px;
+}
+
+/* ==========================
+   Question
+========================== */
+
+.question-title{
+    color:#35545b;
+    font-weight:700;
+    margin:35px 0 25px;
+}
+
+/* ==========================
+   Answer Options
+========================== */
+
+.answer-option{
+    border:2px solid #dceff1;
+    background:white;
+    padding:18px 22px;
+    border-radius:18px;
+    margin-bottom:18px;
+    cursor:pointer;
+    transition:.3s ease;
+    display:flex;
+    align-items:center;
+}
+
+.answer-option:hover{
+    border-color:#5f9ea0;
+    background:#eef9fa;
+    transform:translateX(6px);
+    box-shadow:0 8px 20px rgba(95,158,160,.12);
+}
+
+.answer-option input{
+    margin-right:18px;
+    transform:scale(1.2);
+    accent-color:#5f9ea0;
+}
+
+.answer-option label{
+    cursor:pointer;
+    width:100%;
+    font-size:16px;
+    color:#35545b;
+    font-weight:500;
+}
+
+/* Selected Option */
+
+.answer-option.selected{
+    background:#eef9fa;
+    border-color:#5f9ea0;
+}
+
+/* Correct Answer */
+
+.answer-option.correct{
+    background:#d7f5e8;
+    border-color:#2ecc71;
+}
+
+/* Wrong Answer */
+
+.answer-option.wrong{
+    background:#ffe5e8;
+    border-color:#f2a2b8;
+}
+
+/* ==========================
+   Buttons
+========================== */
+
+.quiz-buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:35px;
+}
+
+.quiz-buttons button{
+    border-radius:35px;
+    padding:12px 35px;
+    font-weight:600;
+    transition:.3s ease;
+}
+
+.btn-primary{
+    background:#5f9ea0;
+    border:none;
+}
+
+.btn-primary:hover{
+    background:#4b7f8a;
+    transform:translateY(-2px);
+}
+
+.btn-outline-primary{
+    border:2px solid #5f9ea0;
+    color:#5f9ea0;
+    background:white;
+}
+
+.btn-outline-primary:hover{
+    background:#5f9ea0;
+    color:white;
+}
+
+/* ==========================
+   Difficulty Badges
+========================== */
+
+.badge{
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+.badge.easy{
+    background:#d7f5e8;
+    color:#2d7a4b;
+}
+
+.badge.medium{
+    background:#fff5d7;
+    color:#c28b00;
+}
+
+.badge.hard{
+    background:#ffe5e8;
+    color:#d1435b;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:768px){
+
+    .quiz-header{
+        padding:60px 0;
+    }
+
+    .quiz-box{
+        padding:30px;
+    }
+
+    .quiz-top{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .quiz-buttons{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .quiz-buttons button{
+        width:100%;
+    }
+
+    .quiz-info{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+}
