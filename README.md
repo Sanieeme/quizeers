@@ -212,8 +212,9 @@ pytest
 
 **Your Name**
 
-- GitHub: https://github.com/Sanieeme
-
+- GitHub: https://github.com/yourusername
+- LinkedIn: https://linkedin.com/in/yourusername
+- Portfolio: https://yourusername.github.io/
 
 ---
 
