@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deleted Quizzes - Quizeers</title>
+    <title>Quizeers</title>
     <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <div class="demo-banner">Static front-end preview for GitHub Pages — no backend, nothing is saved.</div>
+    <div class="demo-banner"></div>
 
     <header class="site-header">
         <div class="container">
@@ -29,33 +29,29 @@
 
     <main id="main-content">
         <div class="container">
-
-            <div class="page-header">
-                <h2>Deleted quizzes</h2>
-                <p>Restore a quiz to bring it back to the admin panel.</p>
+            <div class="hero">
+                <h1>Test your knowledge, one quiz at a time</h1>
+                <p>Quizeers is a lightweight quiz platform. Take a quiz, see your score instantly, and if you're an admin, build new quizzes in minutes.</p>
+                <div class="hero-actions">
+                    <a href="take_quiz.html" class="btn btn-primary">Take the sample quiz</a>
+                    <a href="admin_panel.html" class="btn btn-warning">View admin panel</a>
+                </div>
             </div>
 
-            <div class="table-card">
-                <table>
-                    <caption class="visually-hidden">Deleted quizzes and restore actions</caption>
-                    <thead>
-                        <tr>
-                            <th scope="col">Quiz title</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Quiz title">Pop Culture Trivia</td>
-                            <td data-label="Actions">
-                                <button type="button" class="btn btn-warning btn-sm" data-demo-remove="tr" data-confirm="Restore &quot;Pop Culture Trivia&quot;?" data-demo-message="Restored for this preview session only.">Restore</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Quick to take</h3>
+                    <p>Multiple-choice questions with a live progress bar and instant scoring.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Simple admin tools</h3>
+                    <p>Add quizzes and questions, edit them, and review everyone's results in one place.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Track your results</h3>
+                    <p>Every quiz you complete is saved to your results history.</p>
+                </div>
             </div>
-
-            <a class="back-link" href="admin_panel.html">Back to admin panel</a>
         </div>
     </main>
 

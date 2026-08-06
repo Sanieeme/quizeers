@@ -1,94 +1,88 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Admin Panel</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="demo-banner">Static front-end preview for GitHub Pages — no backend, nothing is saved.</div>
 
-{% block content %}
-    <style>
-        body {
-            background-color: #f4f7fc;
-            font-family: 'Arial', sans-serif;
-            color: #333;
-        }
+    <header class="site-header">
+        <div class="container">
+            <a class="logo" href="index.html">
+                <span class="logo-mark" aria-hidden="true">Q</span>
+                Quizeers
+            </a>
+            <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+            <nav class="main-nav" id="primary-navigation" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        .container {
-            max-width: 1200px;
-            margin-top: 50px;
-        }
+    <main id="main-content">
+        <div class="container">
 
-        h2 {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-weight: 700;
-            color: #5f9ea0;
-            text-align: center;
-            margin-bottom: 30px;
-        }
+            <div class="page-header">
+                <h2>All quiz results</h2>
+                <p>Every submitted attempt across all quizzes and users.</p>
+            </div>
 
-        /* Table Styling */
-        table {
-            width: 100%;
-            margin: 20px 0;
-            border-collapse: collapse;
-        }
+            <div class="table-card">
+                <table>
+                    <caption class="visually-hidden">Quiz results by user</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">User</th>
+                            <th scope="col">Quiz</th>
+                            <th scope="col">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="User">amelia@example.com</td>
+                            <td data-label="Quiz">General Knowledge</td>
+                            <td data-label="Score"><span class="score-pill">85%</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="User">james@example.com</td>
+                            <td data-label="Quiz">World Capitals</td>
+                            <td data-label="Score"><span class="score-pill">70%</span></td>
+                        </tr>
+                        <tr>
+                            <td data-label="User">priya@example.com</td>
+                            <td data-label="Quiz">Science Basics</td>
+                            <td data-label="Score"><span class="score-pill">95%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 
-        th, td {
-            padding: 15px;
-            text-align: left;
-            font-size: 1rem;
-        }
+    <footer class="site-footer">
+        <div class="container">
+            <div class="pages">
+                <h2>Quizeers</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <p class="copy">&copy; <span id="current-year">2026</span> Quizeers. Test your knowledge, one quiz at a time.</p>
+        </div>
+    </footer>
 
-        th {
-            background-color: #5f9ea0;
-            color: white;
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-            transform: translateY(-4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .table-striped {
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Responsive styling */
-        @media screen and (max-width: 768px) {
-            th, td {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
-
-    <div class="container">
-        <h2>Admin View Results</h2>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Quiz</th>
-                    <th>Score</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for result in results %}
-                    <tr>
-                        <td>{{ result.user.email }}</td>  <!-- Display user's email -->
-                        <td>{{ result.quiz.title }}</td>  <!-- Display quiz title -->
-                        <td>{{ result.score }}</td>      <!-- Display score -->
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-{% endblock %}
-
+    <script src="static/js/main.js"></script>
+    <script src="static/js/demo.js"></script>
+    <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,180 +1,84 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Quizeers</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <div class="demo-banner">Static front-end preview for GitHub Pages — no backend, nothing is saved.</div>
 
-{% block title %}Admin{% endblock %}
-
-{% block content %}
-    <style>
-        body {
-            background-color: #f4f6f9;
-            font-family: "Roboto", sans-serif;
-        }
-
-        .admin-panel-container {
-            padding: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .admin-panel-container h2 {
-            text-align: center;
-            color: #2c3e50;
-            font-weight: bold;
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .admin-panel-container h3 {
-            color: #34495e;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        /* Different quiz card colors */
-        .quiz-card {
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background-color: #5f9ea0;
-        }
-
-        .quiz-card:nth-child(1) {
-            background-color: #4e8f88; /* Orange */
-        }
-
-        .quiz-card:nth-child(2) {
-            background-color: #8e44ad; /* Purple */
-        }
-
-        .quiz-card:nth-child(3) {
-            background-color: #16a085; /* Teal */
-        }
-
-        .quiz-card:nth-child(4) {
-            background-color: #e74c3c; /* Red */
-        }
-
-        .quiz-card:nth-child(5) {
-            background-color: #3498db; /* Blue */
-        }
-
-        .quiz-card:nth-child(6) {
-            background-color: #2ecc71; /* Green */
-        }
-
-        .quiz-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        .quiz-card .card-body {
-            padding: 20px;
-        }
-
-        .quiz-card .card-title {
-            font-size: 1.4rem;
-            color: #fff;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: capitalize;
-        }
-
-        .quiz-card .action-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Equal and beautiful buttons */
-        .quiz-card .btn {
-            flex: 1;
-            margin: 0 5px;
-            font-weight: bold;
-            padding: 12px;
-            text-transform: uppercase;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .quiz-card .btn-warning {
-            background-color:rgb(213, 213, 56);
-            border: none;
-            color: #2c3e50;
-        }
-
-        .quiz-card .btn-warning:hover {
-            background-color: rgb(225, 230, 146);
-            transform: translateY(-2px);
-        }
-
-        .quiz-card .btn-danger {
-            background-color:rgb(189, 129, 169);
-            border: none;
-            color: white;
-        }
-
-        .quiz-card .btn-danger:hover {
-            background-color:rgb(179, 70, 123);
-            transform: translateY(-2px);
-        }
-
-        /* Add New Quiz button styling */
-        .add-quiz-btn {
-            background-color: #5f9ea0;
-            border: none;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 12px 40px;
-            text-transform: uppercase;
-            border-radius: 5px;
-            margin: 40px auto;
-            display: block;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .add-quiz-btn:hover {
-            background-color: #4e8f88;
-            transform: translateY(-3px);
-        }
-
-        /* Responsive grid */
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .col-md-4 {
-            flex: 1;
-            min-width: 300px;
-            max-width: 350px;
-        }
-
-    </style>
-
-    <div class="admin-panel-container">
-        <h2>Admin</h2>
-        <h3>Manage Quizzes</h3>
-        <div class="row">
-            {% for quiz in quizzes %}
-                <div class="col-md-4">
-                    <div class="card quiz-card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ quiz.title }}</h5>
-                            <div class="action-buttons">
-                                <a href="{{ url_for('admin_edit_quiz', quiz_id=quiz.id) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ url_for('admin_delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+    <header class="site-header">
+        <div class="container">
+            <a class="logo" href="index.html">
+                <span class="logo-mark" aria-hidden="true">Q</span>
+                Quizeers
+            </a>
+            <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+            <nav class="main-nav" id="primary-navigation" aria-label="Primary">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </nav>
         </div>
-        <a href="{{ url_for('admin_add_quiz') }}" class="add-quiz-btn">Add New Quiz</a>
-    </div>
-{% endblock %}
+    </header>
+
+    <main id="main-content">
+        <div class="container">
+
+            <div class="admin-header">
+                <h2>Manage quizzes</h2>
+                <a href="admin_add_quiz.html" class="btn btn-primary">Add new quiz</a>
+            </div>
+
+            <ul class="quiz-grid" id="quiz-grid">
+                <li class="quiz-card">
+                    <h3 class="quiz-card__title">General Knowledge</h3>
+                    <div class="quiz-card__actions">
+                        <a href="admin_edit_question.html" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger" data-demo-remove="li" data-confirm="Delete &quot;General Knowledge&quot;? You can restore it later from Deleted Quizzes." data-demo-message="Removed for this preview session only.">Delete</a>
+                    </div>
+                </li>
+                <li class="quiz-card">
+                    <h3 class="quiz-card__title">World Capitals</h3>
+                    <div class="quiz-card__actions">
+                        <a href="admin_edit_question.html" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger" data-demo-remove="li" data-confirm="Delete &quot;World Capitals&quot;? You can restore it later from Deleted Quizzes." data-demo-message="Removed for this preview session only.">Delete</a>
+                    </div>
+                </li>
+                <li class="quiz-card">
+                    <h3 class="quiz-card__title">Science Basics</h3>
+                    <div class="quiz-card__actions">
+                        <a href="admin_edit_question.html" class="btn btn-warning">Edit</a>
+                        <a href="#" class="btn btn-danger" data-demo-remove="li" data-confirm="Delete &quot;Science Basics&quot;? You can restore it later from Deleted Quizzes." data-demo-message="Removed for this preview session only.">Delete</a>
+                    </div>
+                </li>
+            </ul>
+
+            <a class="back-link" href="admin_deleted_quizzes.html">View deleted quizzes</a>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="pages">
+                <h2>Quizeers</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="register.html">Register</a></li>
+                </ul>
+            </div>
+            <p class="copy">&copy; <span id="current-year">2026</span> Quizeers. Test your knowledge, one quiz at a time.</p>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+    <script src="static/js/demo.js"></script>
+    <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
