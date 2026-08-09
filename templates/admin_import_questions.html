@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Import Questions - Admin Panel{% endblock %}
+
+{% block content %}
+    <h2>Bulk Import Questions for: {{ quiz.title }}</h2>
+
+    <p>
+        Paste either a JSON array of question objects, or CSV with a header row.
+        Required fields: <code>question_text</code>, <code>option_a</code>, <code>option_b</code>,
+        <code>option_c</code>, <code>option_d</code>, <code>correct_answer</code>
+        (either the letter A-D or the exact text of the correct option).
+    </p>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Format</label><br>
+            <input type="radio" name="format" value="json" id="fmt_json" checked>
+            <label for="fmt_json">JSON</label>
+            &nbsp;&nbsp;
+            <input type="radio" name="format" value="csv" id="fmt_csv">
+            <label for="fmt_csv">CSV</label>
+        </div>
+        <div class="mb-3">
+            <label for="payload" class="form-label">Data</label>
+            <textarea class="form-control" id="payload" name="payload" rows="14" placeholder='[
+  {
+    "question_text": "What does ETL stand for?",
+    "option_a": "Extract, Transform, Load",
+    "option_b": "Evaluate, Test, Launch",
+    "option_c": "Export, Transfer, Log",
+    "option_d": "Extract, Track, Link",
+    "correct_answer": "A"
+  }
+]' required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Import Questions</button>
+        <a href="{{ url_for('admin_add_questions', quiz_id=quiz.id) }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

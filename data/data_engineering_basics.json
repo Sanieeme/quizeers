@@ -1,0 +1,112 @@
+{
+  "quiz": {
+    "title": "Data Engineering Basics",
+    "description": "The role of a data engineer, the ETL pipeline, Unix/Linux and the Bash terminal, Python with Pandas, and a hands-on Jupyter notebook project."
+  },
+  "questions": [
+    {
+      "question_text": "What is the primary responsibility of a data engineer?",
+      "option_a": "Designing and building the systems that collect, store, and move data for others to analyze",
+      "option_b": "Only creating dashboards and visualizations for executives",
+      "option_c": "Managing a company's marketing campaigns",
+      "option_d": "Writing front-end code for a website",
+      "correct_answer": "Designing and building the systems that collect, store, and move data for others to analyze"
+    },
+    {
+      "question_text": "Which of these is a typical deliverable a data engineer produces for data scientists and analysts?",
+      "option_a": "Clean, reliable, well-structured datasets and pipelines",
+      "option_b": "Quarterly financial statements",
+      "option_c": "Employee performance reviews",
+      "option_d": "UI mockups",
+      "correct_answer": "Clean, reliable, well-structured datasets and pipelines"
+    },
+    {
+      "question_text": "What does ETL stand for?",
+      "option_a": "Extract, Transform, Load",
+      "option_b": "Evaluate, Test, Launch",
+      "option_c": "Export, Transfer, Log",
+      "option_d": "Extract, Track, Link",
+      "correct_answer": "Extract, Transform, Load"
+    },
+    {
+      "question_text": "In an ETL pipeline, what happens during the 'Transform' step?",
+      "option_a": "Raw data is cleaned, reshaped, validated, or enriched before loading",
+      "option_b": "Data is pulled from the source system for the first time",
+      "option_c": "The final report is emailed to stakeholders",
+      "option_d": "The database server is restarted",
+      "correct_answer": "Raw data is cleaned, reshaped, validated, or enriched before loading"
+    },
+    {
+      "question_text": "Where does data typically end up after the 'Load' step of an ETL pipeline?",
+      "option_a": "A target destination such as a data warehouse or database",
+      "option_b": "The source system it originally came from",
+      "option_c": "A printed report",
+      "option_d": "The user's local clipboard",
+      "correct_answer": "A target destination such as a data warehouse or database"
+    },
+    {
+      "question_text": "Which command lists the files and directories in the current location on a Unix/Linux terminal?",
+      "option_a": "ls",
+      "option_b": "cd",
+      "option_c": "grep",
+      "option_d": "chmod",
+      "correct_answer": "ls"
+    },
+    {
+      "question_text": "Which Bash command is used to change the current working directory?",
+      "option_a": "cd",
+      "option_b": "pwd",
+      "option_c": "mv",
+      "option_d": "rm",
+      "correct_answer": "cd"
+    },
+    {
+      "question_text": "What does the Bash command 'pwd' do?",
+      "option_a": "Prints the path of the current working directory",
+      "option_b": "Deletes the current directory",
+      "option_c": "Changes file permissions",
+      "option_d": "Compresses a file",
+      "correct_answer": "Prints the path of the current working directory"
+    },
+    {
+      "question_text": "Which Python library is most commonly used for tabular data manipulation and analysis in a data pipeline?",
+      "option_a": "Pandas",
+      "option_b": "Flask",
+      "option_c": "Matplotlib only",
+      "option_d": "Django",
+      "correct_answer": "Pandas"
+    },
+    {
+      "question_text": "In Pandas, which function is typically used to read a CSV file into a DataFrame?",
+      "option_a": "pd.read_csv()",
+      "option_b": "pd.load_csv()",
+      "option_c": "pd.open_csv()",
+      "option_d": "pd.import_csv()",
+      "correct_answer": "pd.read_csv()"
+    },
+    {
+      "question_text": "What is a Jupyter notebook primarily used for in a hands-on data engineering exercise?",
+      "option_a": "Writing and running code interactively alongside notes, and viewing output inline",
+      "option_b": "Hosting a production web server",
+      "option_c": "Managing version control branches",
+      "option_d": "Sending automated emails",
+      "correct_answer": "Writing and running code interactively alongside notes, and viewing output inline"
+    },
+    {
+      "question_text": "In the hands-on ETL project, what is the first step described for getting your own copy of the starter repository?",
+      "option_a": "Fork the GitLab repository",
+      "option_b": "Delete the original repository",
+      "option_c": "Email the instructor for the code",
+      "option_d": "Download a ZIP from a random website",
+      "correct_answer": "Fork the GitLab repository"
+    },
+    {
+      "question_text": "After forking the repo and implementing a simple ETL pipeline in Python, what is the final step of the hands-on project?",
+      "option_a": "Submit the work for auto-grading",
+      "option_b": "Delete the notebook",
+      "option_c": "Uninstall Python",
+      "option_d": "Merge directly into an unrelated project",
+      "correct_answer": "Submit the work for auto-grading"
+    }
+  ]
+}

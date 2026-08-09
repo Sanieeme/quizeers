@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ quiz.title }} - Take Quiz{% endblock %}
+
+{% block content %}
+    <h1>{{ quiz.title }}</h1>
+
+    {% if quiz.time_limit_minutes %}
+        <p style="text-align:center;">
+            Time remaining: <strong id="time-remaining">{{ quiz.time_limit_minutes }}:00</strong>
+        </p>
+    {% endif %}
+
+    <div class="progress" style="height: 20px; margin-bottom: 20px;">
+        <div id="quiz-progress" class="progress-bar" role="progressbar" style="width: 0%;">0 / {{ questions|length }}</div>
+    </div>
+
+    <form method="POST" id="quiz-form">
+        {% for question in questions %}
+            <p>{{ question.text }}</p>
+            {% for answer in question.answers %}
+                <input type="radio" class="quiz-radio" name="question_{{ question.id }}" value="{{ answer.text }}"> {{ answer.text }}<br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit Quiz</button>
+    </form>
+    <br>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+
+    <script>
+        (function () {
+            const totalQuestions = {{ questions|length }};
+            const progressBar = document.getElementById('quiz-progress');
+            const form = document.getElementById('quiz-form');
+
+            function updateProgress() {
+                const answered = new Set();
+                form.querySelectorAll('.quiz-radio:checked').forEach(function (input) {
+                    answered.add(input.name);
+                });
+                const count = answered.size;
+                const pct = totalQuestions ? Math.round((count / totalQuestions) * 100) : 0;
+                progressBar.style.width = pct + '%';
+                progressBar.textContent = count + ' / ' + totalQuestions;
+            }
+
+            form.addEventListener('change', updateProgress);
+            updateProgress();
+
+            {% if quiz.time_limit_minutes %}
+            let secondsLeft = {{ quiz.time_limit_minutes }} * 60;
+            const display = document.getElementById('time-remaining');
+
+            const timer = setInterval(function () {
+                secondsLeft -= 1;
+                if (secondsLeft <= 0) {
+                    clearInterval(timer);
+                    display.textContent = "0:00";
+                    form.submit();
+                    return;
+                }
+                const m = Math.floor(secondsLeft / 60);
+                const s = secondsLeft % 60;
+                display.textContent = m + ':' + String(s).padStart(2, '0');
+            }, 1000);
+            {% endif %}
+        })();
+    </script>
+{% endblock %}
