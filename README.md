@@ -1,5 +1,8 @@
 quizeers_app
 
+WTC-SHVZT25U 
+
+
 ## Quiz content
 
 - `data/data_engineering_basics.json` — a 13-question quiz covering the role of a data engineer, the ETL pipeline, Unix/Linux and the Bash terminal, Python with Pandas, and a hands-on Jupyter notebook project (fork a GitLab repo, implement a simple ETL pipeline in Python, submit for auto-grading). Field names (`question_text`, `option_a`–`option_d`, `correct_answer`) match the admin "Add Questions" form, so the questions can be entered as-is through the admin panel or loaded with a seed script.
