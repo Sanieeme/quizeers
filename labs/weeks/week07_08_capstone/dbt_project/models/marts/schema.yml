@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: mart_unified_orders
+    description: >
+      Orders unified from two independent ingestion paths: real-time SFTP
+      drops (stg_sftp_orders) and the original batch ETL pipeline
+      (stg_batch_orders). Demonstrates genuine multi-source integration --
+      the two pipelines never communicate with each other, only agree on
+      a common output shape.
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
+      - name: source_system
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['sftp', 'batch_etl']
+      - name: total_price
+        tests:
+          - not_null
+
+  - name: mart_revenue_by_country
+    description: Revenue rolled up by country and source system, the aggregate a served REST endpoint reads from directly.
+    columns:
+      - name: revenue
+        tests:
+          - not_null

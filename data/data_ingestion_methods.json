@@ -1,0 +1,88 @@
+{
+  "quiz": {
+    "title": "Data Ingestion Methods",
+    "description": "Approaches to bringing data into a pipeline or platform, including batch ingestion, streaming ingestion, APIs, change data capture, and file-based ingestion."
+  },
+  "questions": [
+    {
+      "question_text": "What is 'batch ingestion'?",
+      "option_a": "Collecting and loading data in large chunks at scheduled intervals",
+      "option_b": "Processing each record the instant it is created",
+      "option_c": "Deleting old data automatically",
+      "option_d": "Storing data only in memory",
+      "correct_answer": "Collecting and loading data in large chunks at scheduled intervals"
+    },
+    {
+      "question_text": "What is 'streaming ingestion'?",
+      "option_a": "Continuously ingesting data as individual events arrive, in near real time",
+      "option_b": "Loading data once a year",
+      "option_c": "Manually copying files with a USB drive",
+      "option_d": "Ingesting only from CSV files",
+      "correct_answer": "Continuously ingesting data as individual events arrive, in near real time"
+    },
+    {
+      "question_text": "What is Change Data Capture (CDC)?",
+      "option_a": "A technique for identifying and capturing changes made to source data so they can be propagated downstream",
+      "option_b": "A method for compressing files",
+      "option_c": "A way to encrypt a database",
+      "option_d": "A type of user authentication",
+      "correct_answer": "A technique for identifying and capturing changes made to source data so they can be propagated downstream"
+    },
+    {
+      "question_text": "Which of these is a common way to ingest data from a third-party service?",
+      "option_a": "Calling a REST API",
+      "option_b": "Printing a paper report",
+      "option_c": "Manually retyping data from a screen",
+      "option_d": "Using a calculator",
+      "correct_answer": "Calling a REST API"
+    },
+    {
+      "question_text": "What is a common challenge with real-time/streaming ingestion compared to batch?",
+      "option_a": "Handling out-of-order or late-arriving events and maintaining low latency",
+      "option_b": "It is always simpler to implement than batch",
+      "option_c": "It requires no infrastructure",
+      "option_d": "It cannot handle any volume of data",
+      "correct_answer": "Handling out-of-order or late-arriving events and maintaining low latency"
+    },
+    {
+      "question_text": "What role does a message queue or event streaming platform, like Kafka, typically play in ingestion?",
+      "option_a": "Buffering and delivering events reliably between producers and consumers",
+      "option_b": "Formatting Word documents",
+      "option_c": "Rendering web pages",
+      "option_d": "Compiling source code",
+      "correct_answer": "Buffering and delivering events reliably between producers and consumers"
+    },
+    {
+      "question_text": "What is 'polling' in the context of data ingestion?",
+      "option_a": "Repeatedly checking a source at intervals to see if new data is available",
+      "option_b": "A method of encrypting data at rest",
+      "option_c": "A way to visualize data on a dashboard",
+      "option_d": "A SQL join type",
+      "correct_answer": "Repeatedly checking a source at intervals to see if new data is available"
+    },
+    {
+      "question_text": "What is a webhook, in the context of ingesting data?",
+      "option_a": "An HTTP callback that a source system sends automatically when an event happens",
+      "option_b": "A physical network cable",
+      "option_c": "A type of database index",
+      "option_d": "A scheduled cron job only",
+      "correct_answer": "An HTTP callback that a source system sends automatically when an event happens"
+    },
+    {
+      "question_text": "Why might an organization choose a hybrid ingestion approach combining batch and streaming (sometimes called Lambda or Kappa architecture)?",
+      "option_a": "To balance the need for both historical, high-volume processing and low-latency, real-time updates",
+      "option_b": "Because streaming is illegal in most countries",
+      "option_c": "Because batch processing has been deprecated",
+      "option_d": "Because only one ingestion method is ever allowed",
+      "correct_answer": "To balance the need for both historical, high-volume processing and low-latency, real-time updates"
+    },
+    {
+      "question_text": "What is a common risk when ingesting data directly from production databases without care?",
+      "option_a": "Placing excessive load on the production system, affecting application performance",
+      "option_b": "Improving application performance automatically",
+      "option_c": "Guaranteeing zero data loss with no design effort",
+      "option_d": "Eliminating the need for monitoring",
+      "correct_answer": "Placing excessive load on the production system, affecting application performance"
+    }
+  ]
+}

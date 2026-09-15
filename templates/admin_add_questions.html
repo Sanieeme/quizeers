@@ -4,7 +4,7 @@
 
 {% block content %}
     <h2>Add Questions for Quiz: {{ quiz.title }}</h2>
-    <p><a href="{{ url_for('admin_import_questions', quiz_id=quiz.id) }}">Bulk import questions (CSV/JSON)</a></p>
+    <p><a href="{{ url_for('admin.admin_import_questions', quiz_id=quiz.id) }}">Bulk import questions (CSV/JSON)</a></p>
     <form method="POST">
         <div class="mb-3">
             <label for="question_text" class="form-label">Question</label>
@@ -46,8 +46,8 @@
                         <td>{{ question.text }}</td>
                         <td>{{ question.correct_answer }}</td>
                         <td>
-                            <a href="{{ url_for('admin_edit_question', question_id=question.id) }}" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="{{ url_for('admin_delete_question', question_id=question.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this question?')">Delete</a>
+                            <a href="{{ url_for('admin.admin_edit_question', question_id=question.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{{ url_for('admin.admin_delete_question', question_id=question.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this question?')">Delete</a>
                         </td>
                     </tr>
                 {% endfor %}
@@ -57,6 +57,6 @@
         <p>No questions yet.</p>
     {% endif %}
 
-    <a href="{{ url_for('admin_panel') }}">Back to Admin Panel</a>
+    <a href="{{ url_for('admin.admin_panel') }}">Back to Admin Panel</a>
 {% endblock %}
 

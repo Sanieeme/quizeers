@@ -1,0 +1,96 @@
+{
+  "quiz": {
+    "title": "Apache Spark",
+    "description": "Distributed data processing with Apache Spark: RDDs, DataFrames, transformations vs actions, and cluster concepts."
+  },
+  "questions": [
+    {
+      "question_text": "What is Apache Spark primarily used for?",
+      "option_a": "Distributed, large-scale data processing",
+      "option_b": "Sending emails",
+      "option_c": "Hosting websites",
+      "option_d": "Managing user passwords",
+      "correct_answer": "Distributed, large-scale data processing"
+    },
+    {
+      "question_text": "What does RDD stand for in Spark?",
+      "option_a": "Resilient Distributed Dataset",
+      "option_b": "Rapid Data Delivery",
+      "option_c": "Relational Data Definition",
+      "option_d": "Remote Data Directory",
+      "correct_answer": "Resilient Distributed Dataset"
+    },
+    {
+      "question_text": "What is the key difference between a Spark transformation and an action?",
+      "option_a": "Transformations are lazily evaluated and build a plan, while actions trigger actual computation",
+      "option_b": "Transformations run immediately and actions are lazy",
+      "option_c": "There is no difference between them",
+      "option_d": "Actions only work on strings",
+      "correct_answer": "Transformations are lazily evaluated and build a plan, while actions trigger actual computation"
+    },
+    {
+      "question_text": "Which Spark API provides a higher-level, table-like abstraction similar to a Pandas DataFrame?",
+      "option_a": "Spark DataFrame API",
+      "option_b": "Raw socket API",
+      "option_c": "Spark's file system driver",
+      "option_d": "The JVM garbage collector",
+      "correct_answer": "Spark DataFrame API"
+    },
+    {
+      "question_text": "What is a Spark 'driver program' responsible for?",
+      "option_a": "Coordinating the execution of a Spark application across the cluster",
+      "option_b": "Only storing log files",
+      "option_c": "Rendering the user interface",
+      "option_d": "Encrypting network traffic",
+      "correct_answer": "Coordinating the execution of a Spark application across the cluster"
+    },
+    {
+      "question_text": "What does it mean that Spark performs 'in-memory' processing?",
+      "option_a": "It keeps intermediate data in RAM across operations to speed up computation compared to disk-based systems",
+      "option_b": "It never uses disk at all under any circumstance",
+      "option_c": "It only works on a single laptop",
+      "option_d": "It stores all data permanently in memory forever",
+      "correct_answer": "It keeps intermediate data in RAM across operations to speed up computation compared to disk-based systems"
+    },
+    {
+      "question_text": "What is a Spark 'executor'?",
+      "option_a": "A worker process that runs tasks and stores data for a Spark application",
+      "option_b": "A tool for editing SQL queries",
+      "option_c": "A type of database index",
+      "option_d": "A Python package manager",
+      "correct_answer": "A worker process that runs tasks and stores data for a Spark application"
+    },
+    {
+      "question_text": "Which Spark component allows you to run SQL-like queries on structured data?",
+      "option_a": "Spark SQL",
+      "option_b": "Spark Streaming alone",
+      "option_c": "Spark MLlib",
+      "option_d": "Spark GraphX",
+      "correct_answer": "Spark SQL"
+    },
+    {
+      "question_text": "What is 'lazy evaluation' in Spark designed to enable?",
+      "option_a": "Optimizing the overall execution plan before any computation actually runs",
+      "option_b": "Making code impossible to debug",
+      "option_c": "Forcing every line to execute immediately",
+      "option_d": "Preventing the use of DataFrames",
+      "correct_answer": "Optimizing the overall execution plan before any computation actually runs"
+    },
+    {
+      "question_text": "Which Spark module is designed for processing continuous streams of data?",
+      "option_a": "Spark Structured Streaming",
+      "option_b": "Spark MLlib",
+      "option_c": "Spark Core only",
+      "option_d": "Spark GraphX",
+      "correct_answer": "Spark Structured Streaming"
+    },
+    {
+      "question_text": "Why is Spark often preferred over traditional single-machine tools for very large datasets?",
+      "option_a": "It distributes computation across many machines in a cluster, enabling horizontal scalability",
+      "option_b": "It can only process data smaller than 1MB",
+      "option_c": "It requires no cluster at all",
+      "option_d": "It only supports Java, not Python or Scala",
+      "correct_answer": "It distributes computation across many machines in a cluster, enabling horizontal scalability"
+    }
+  ]
+}

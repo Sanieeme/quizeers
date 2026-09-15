@@ -35,6 +35,6 @@
 ]' required></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Import Questions</button>
-        <a href="{{ url_for('admin_add_questions', quiz_id=quiz.id) }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ url_for('admin.admin_add_questions', quiz_id=quiz.id) }}" class="btn btn-secondary">Cancel</a>
     </form>
 {% endblock %}

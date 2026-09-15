@@ -1,0 +1,14 @@
+pandas
+tinydb
+pyspark
+kafka-python
+boto3
+moto[s3]
+google-cloud-storage
+azure-storage-blob
+
+# Airflow has conflicting pins with the packages above (older Flask/Werkzeug/
+# SQLAlchemy) -- install it in its own virtual environment:
+#   python3 -m venv airflow_venv
+#   airflow_venv/bin/pip install "apache-airflow==2.10.5" pandas \
+#     --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.10.5/constraints-3.12.txt"

@@ -1,0 +1,112 @@
+{
+  "quiz": {
+    "title": "Relational Databases and SQL",
+    "description": "Relational database concepts including tables, schemas, keys, normalization, joins, and core SQL for data engineering."
+  },
+  "questions": [
+    {
+      "question_text": "What does 'relational' mean in the context of a relational database?",
+      "option_a": "Data is organized into tables with relationships defined via keys",
+      "option_b": "Data is stored only as key-value pairs",
+      "option_c": "Data is stored as documents",
+      "option_d": "Data cannot be queried with SQL",
+      "correct_answer": "Data is organized into tables with relationships defined via keys"
+    },
+    {
+      "question_text": "What is a primary key?",
+      "option_a": "A column or set of columns that uniquely identifies each row in a table",
+      "option_b": "Any column that stores text",
+      "option_c": "A password used to log into the database",
+      "option_d": "A column that is always deleted",
+      "correct_answer": "A column or set of columns that uniquely identifies each row in a table"
+    },
+    {
+      "question_text": "What is a foreign key used for?",
+      "option_a": "Linking a row in one table to a row in another table",
+      "option_b": "Encrypting sensitive columns",
+      "option_c": "Sorting a table alphabetically",
+      "option_d": "Storing binary large objects",
+      "correct_answer": "Linking a row in one table to a row in another table"
+    },
+    {
+      "question_text": "Which SQL clause is used to filter rows before aggregation?",
+      "option_a": "WHERE",
+      "option_b": "HAVING",
+      "option_c": "ORDER BY",
+      "option_d": "GROUP BY",
+      "correct_answer": "WHERE"
+    },
+    {
+      "question_text": "Which SQL clause filters groups after a GROUP BY aggregation?",
+      "option_a": "HAVING",
+      "option_b": "WHERE",
+      "option_c": "SELECT",
+      "option_d": "FROM",
+      "correct_answer": "HAVING"
+    },
+    {
+      "question_text": "What does an INNER JOIN return?",
+      "option_a": "Only rows that have matching values in both joined tables",
+      "option_b": "All rows from both tables regardless of match",
+      "option_c": "Only rows from the left table",
+      "option_d": "No rows at all",
+      "correct_answer": "Only rows that have matching values in both joined tables"
+    },
+    {
+      "question_text": "What is database normalization primarily used to reduce?",
+      "option_a": "Data redundancy and update anomalies",
+      "option_b": "Query speed",
+      "option_c": "Number of tables",
+      "option_d": "Number of users",
+      "correct_answer": "Data redundancy and update anomalies"
+    },
+    {
+      "question_text": "Which of these is an example of a relational database management system?",
+      "option_a": "PostgreSQL",
+      "option_b": "MongoDB",
+      "option_c": "Redis",
+      "option_d": "Kafka",
+      "correct_answer": "PostgreSQL"
+    },
+    {
+      "question_text": "What does the SQL command 'CREATE INDEX' help improve?",
+      "option_a": "The speed of lookups and queries on a column",
+      "option_b": "The number of rows in a table",
+      "option_c": "The color scheme of a database GUI",
+      "option_d": "The number of foreign keys",
+      "correct_answer": "The speed of lookups and queries on a column"
+    },
+    {
+      "question_text": "What is a transaction in a relational database, in the context of ACID properties?",
+      "option_a": "A unit of work that is executed reliably and treated as a single atomic operation",
+      "option_b": "A single SELECT statement only",
+      "option_c": "A backup of the entire database",
+      "option_d": "A user login session",
+      "correct_answer": "A unit of work that is executed reliably and treated as a single atomic operation"
+    },
+    {
+      "question_text": "What does the 'A' in ACID stand for?",
+      "option_a": "Atomicity",
+      "option_b": "Availability",
+      "option_c": "Aggregation",
+      "option_d": "Authentication",
+      "correct_answer": "Atomicity"
+    },
+    {
+      "question_text": "Which SQL statement is used to combine rows from two queries with the same columns?",
+      "option_a": "UNION",
+      "option_b": "JOIN",
+      "option_c": "MERGE",
+      "option_d": "GROUP BY",
+      "correct_answer": "UNION"
+    },
+    {
+      "question_text": "What is a common purpose of database schemas in a data warehouse, such as a star schema?",
+      "option_a": "Organizing fact and dimension tables to optimize analytical queries",
+      "option_b": "Encrypting all table names",
+      "option_c": "Preventing any joins between tables",
+      "option_d": "Storing only unstructured text",
+      "correct_answer": "Organizing fact and dimension tables to optimize analytical queries"
+    }
+  ]
+}

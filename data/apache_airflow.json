@@ -1,0 +1,88 @@
+{
+  "quiz": {
+    "title": "Apache Airflow",
+    "description": "Workflow orchestration with Apache Airflow: DAGs, tasks, operators, scheduling, and dependency management."
+  },
+  "questions": [
+    {
+      "question_text": "What is Apache Airflow primarily used for?",
+      "option_a": "Programmatically authoring, scheduling, and monitoring workflows",
+      "option_b": "Storing large binary files",
+      "option_c": "Hosting a relational database",
+      "option_d": "Rendering web pages",
+      "correct_answer": "Programmatically authoring, scheduling, and monitoring workflows"
+    },
+    {
+      "question_text": "What does DAG stand for in Airflow?",
+      "option_a": "Directed Acyclic Graph",
+      "option_b": "Data Access Gateway",
+      "option_c": "Dynamic Application Generator",
+      "option_d": "Database Aggregation Group",
+      "correct_answer": "Directed Acyclic Graph"
+    },
+    {
+      "question_text": "Why must an Airflow workflow be 'acyclic'?",
+      "option_a": "So that tasks have a clear order and dependencies never form an infinite loop",
+      "option_b": "So that tasks can run in a random order",
+      "option_c": "So that only one task can ever exist",
+      "option_d": "So that tasks always run forever",
+      "correct_answer": "So that tasks have a clear order and dependencies never form an infinite loop"
+    },
+    {
+      "question_text": "What is a 'task' in an Airflow DAG?",
+      "option_a": "A single unit of work, such as running a script or querying a database",
+      "option_b": "The entire workflow file itself",
+      "option_c": "A type of Kafka topic",
+      "option_d": "A cloud storage bucket",
+      "correct_answer": "A single unit of work, such as running a script or querying a database"
+    },
+    {
+      "question_text": "What is an Airflow 'operator'?",
+      "option_a": "A template that defines a single type of task, such as running Python code or a Bash command",
+      "option_b": "A person who manages the Airflow server",
+      "option_c": "A SQL keyword",
+      "option_d": "A type of firewall rule",
+      "correct_answer": "A template that defines a single type of task, such as running Python code or a Bash command"
+    },
+    {
+      "question_text": "How are dependencies between tasks typically defined in an Airflow DAG (using the bitshift syntax)?",
+      "option_a": "Using operators like task_a >> task_b to indicate task_a runs before task_b",
+      "option_b": "By naming files alphabetically",
+      "option_c": "By running all tasks at the exact same time always",
+      "option_d": "Dependencies cannot be defined in Airflow",
+      "correct_answer": "Using operators like task_a >> task_b to indicate task_a runs before task_b"
+    },
+    {
+      "question_text": "What does the Airflow 'scheduler' do?",
+      "option_a": "Continuously monitors DAGs and triggers task instances according to their schedule and dependencies",
+      "option_b": "Only stores historical logs",
+      "option_c": "Writes the DAG code automatically",
+      "option_d": "Replaces the need for a database",
+      "correct_answer": "Continuously monitors DAGs and triggers task instances according to their schedule and dependencies"
+    },
+    {
+      "question_text": "What is a common reason to use Airflow to orchestrate an ETL pipeline?",
+      "option_a": "It manages scheduling, retries, and dependencies between extract, transform, and load steps",
+      "option_b": "It removes the need to write any extraction code",
+      "option_c": "It only works with a single cloud provider",
+      "option_d": "It cannot be monitored or logged",
+      "correct_answer": "It manages scheduling, retries, and dependencies between extract, transform, and load steps"
+    },
+    {
+      "question_text": "What does the Airflow web UI primarily allow you to do?",
+      "option_a": "Visualize DAGs, monitor task status, and view logs",
+      "option_b": "Edit raw database rows directly",
+      "option_c": "Compile Python bytecode",
+      "option_d": "Send emails to customers",
+      "correct_answer": "Visualize DAGs, monitor task status, and view logs"
+    },
+    {
+      "question_text": "What happens if a task in an Airflow DAG fails and retries are configured?",
+      "option_a": "Airflow can automatically retry the task according to the configured retry policy",
+      "option_b": "The entire Airflow installation shuts down permanently",
+      "option_c": "The DAG is deleted automatically",
+      "option_d": "All future runs of any DAG are cancelled",
+      "correct_answer": "Airflow can automatically retry the task according to the configured retry policy"
+    }
+  ]
+}

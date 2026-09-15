@@ -1,0 +1,11 @@
+order_id,customer_name,email,product,quantity,unit_price,order_date,country
+1001,Alice Ng, alice@example.com ,Widget A,3,9.99,2026-01-05,South Africa
+1002,Bob Smith,bob@example.com,Widget B,1,24.50,2026-01-06,USA
+1003,,carol@example.com,Widget A,2,9.99,2026-01-06,UK
+1004,Dana Lee,dana@example.com,Widget C,5,4.25,2026-01-07,South Africa
+1005,Evan Cho,evan@example.com,Widget B,,24.50,2026-01-07,Kenya
+1006,Fay Osei,fay@example.com,Widget A,1,9.99,2026-01-08,South Africa
+1007,Grace Kim,grace@example.com,Widget C,4,4.25,2026-01-08,USA
+1008,Hassan Ali,hassan@example.com,Widget B,2,24.50,not-a-date,UK
+1009,Ivy Chen,ivy@example.com,Widget A,10,9.99,2026-01-09,South Africa
+1010,Jon Park,jon@example.com,Widget C,3,4.25,2026-01-10,Kenya

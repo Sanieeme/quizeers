@@ -13,20 +13,22 @@
             <div class="logo">Quizeers</div>
             <nav class="menu">
                 <ul>
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('quizzes.home') }}">Home</a></li>
                     {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('labs.labs_overview') }}">Labs</a></li>
                         {% if current_user.is_admin %}
-                            <li><a href="{{ url_for('admin_panel') }}">Admin</a></li>
-                            <li><a href="{{ url_for('admin_users') }}">Users</a></li>
-                            <li><a href="{{ url_for('admin_view_results') }}">All Results</a></li>
+                            <li><a href="{{ url_for('admin.admin_panel') }}">Admin</a></li>
+                            <li><a href="{{ url_for('analytics.admin_analytics') }}">Analytics</a></li>
+                            <li><a href="{{ url_for('admin.admin_users') }}">Users</a></li>
+                            <li><a href="{{ url_for('admin.admin_view_results') }}">All Results</a></li>
                         {% else %}
-                            <li><a href="{{ url_for('user_view_results') }}">My Results</a></li>
+                            <li><a href="{{ url_for('quizzes.user_view_results') }}">My Results</a></li>
                         {% endif %}
-                        <li><a href="{{ url_for('profile') }}">Profile</a></li>
-                        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        <li><a href="{{ url_for('quizzes.profile') }}">Profile</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                     {% else %}
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
-                        <li><a href="{{ url_for('register') }}">Register</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                     {% endif %}
                 </ul>
             </nav>

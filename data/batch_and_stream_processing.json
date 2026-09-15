@@ -1,0 +1,88 @@
+{
+  "quiz": {
+    "title": "Batch and Stream Processing",
+    "description": "Comparing batch and stream processing paradigms, latency and throughput trade-offs, and when to use each approach."
+  },
+  "questions": [
+    {
+      "question_text": "What is batch processing?",
+      "option_a": "Processing a large collection of data all at once, typically on a schedule",
+      "option_b": "Processing a single record the instant it arrives",
+      "option_c": "A method for compressing images",
+      "option_d": "A type of database index",
+      "correct_answer": "Processing a large collection of data all at once, typically on a schedule"
+    },
+    {
+      "question_text": "What is stream processing?",
+      "option_a": "Continuously processing data as individual events arrive, with low latency",
+      "option_b": "Processing data only once per year",
+      "option_c": "A way to permanently delete data",
+      "option_d": "A method for encrypting files at rest",
+      "correct_answer": "Continuously processing data as individual events arrive, with low latency"
+    },
+    {
+      "question_text": "Which processing style is generally better suited for generating a fraud-alert within seconds of a suspicious transaction?",
+      "option_a": "Stream processing",
+      "option_b": "Batch processing run once nightly",
+      "option_c": "A yearly batch report",
+      "option_d": "None; this cannot be automated",
+      "correct_answer": "Stream processing"
+    },
+    {
+      "question_text": "Which processing style is typically well suited for computing a company's end-of-day financial reconciliation?",
+      "option_a": "Batch processing",
+      "option_b": "Stream processing exclusively",
+      "option_c": "Manual entry only",
+      "option_d": "None of the above",
+      "correct_answer": "Batch processing"
+    },
+    {
+      "question_text": "What is 'latency' in the context of data processing?",
+      "option_a": "The time delay between an event occurring and it being processed or available",
+      "option_b": "The total storage capacity of a database",
+      "option_c": "The number of columns in a table",
+      "option_d": "The color scheme of a dashboard",
+      "correct_answer": "The time delay between an event occurring and it being processed or available"
+    },
+    {
+      "question_text": "What is 'throughput' in the context of data processing systems?",
+      "option_a": "The amount of data or number of events processed in a given time period",
+      "option_b": "The number of users logged in",
+      "option_c": "The physical size of a server room",
+      "option_d": "The encryption algorithm used",
+      "correct_answer": "The amount of data or number of events processed in a given time period"
+    },
+    {
+      "question_text": "What does the 'Lambda architecture' combine?",
+      "option_a": "A batch layer for comprehensive historical processing and a speed layer for real-time processing",
+      "option_b": "Two batch layers and no streaming",
+      "option_c": "Only a single real-time layer with no batch processing",
+      "option_d": "AWS Lambda functions exclusively, unrelated to architecture patterns",
+      "correct_answer": "A batch layer for comprehensive historical processing and a speed layer for real-time processing"
+    },
+    {
+      "question_text": "What is a key challenge specific to stream processing that batch processing doesn't usually face?",
+      "option_a": "Handling continuously arriving, potentially out-of-order data while maintaining state",
+      "option_b": "Reading data from a file on disk",
+      "option_c": "Running a job once a day",
+      "option_d": "Writing a SQL SELECT statement",
+      "correct_answer": "Handling continuously arriving, potentially out-of-order data while maintaining state"
+    },
+    {
+      "question_text": "What does 'windowing' mean in stream processing?",
+      "option_a": "Grouping events into finite time-based or count-based chunks for aggregation",
+      "option_b": "Cleaning a computer monitor",
+      "option_c": "Formatting a UI window",
+      "option_d": "Encrypting a stream of data",
+      "correct_answer": "Grouping events into finite time-based or count-based chunks for aggregation"
+    },
+    {
+      "question_text": "Which of these tools is commonly associated with stream processing?",
+      "option_a": "Apache Kafka Streams or Spark Structured Streaming",
+      "option_b": "A static CSV file",
+      "option_c": "A single Excel spreadsheet",
+      "option_d": "A printed report",
+      "correct_answer": "Apache Kafka Streams or Spark Structured Streaming"
+    }
+  ]
+}

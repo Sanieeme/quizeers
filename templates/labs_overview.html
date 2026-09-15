@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Data Engineering Labs{% endblock %}
+
+{% block content %}
+    <style>
+        .container { max-width: 1100px; margin-top: 50px; }
+        h2 { text-align: center; color: #5f9ea0; font-weight: 700; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .lab-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 18px 22px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        .lab-card h4 { margin: 0 0 6px 0; color: #333; }
+        .lab-card p { margin: 0; color: #555; }
+        .badge-runnable { background: #2ecc71; }
+        .badge-reference { background: #95a5a6; }
+    </style>
+
+    <div class="container">
+        <h2>Data Engineering Labs</h2>
+        <p class="subtitle">
+            Hands-on code covering the same curriculum as the quizzes — ETL, databases,
+            Spark, Kafka, Airflow, batch/stream processing, and cloud platforms.
+        </p>
+
+        {% for lab in labs %}
+            <div class="lab-card">
+                <div>
+                    <h4>
+                        {{ lab.title }}
+                        {% if lab.runnable %}
+                            <span class="badge rounded-pill badge-runnable">live demo</span>
+                        {% else %}
+                            <span class="badge rounded-pill badge-reference">code in repo</span>
+                        {% endif %}
+                    </h4>
+                    <p>{{ lab.description }}</p>
+                    <small class="text-muted">labs/{{ lab.folder }}/</small>
+                </div>
+                {% if lab.runnable %}
+                    <a href="{{ url_for('labs.labs_etl_demo') }}" class="btn btn-primary">Run it</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <h2 class="mt-5">Week-by-Week (full 9-week syllabus)</h2>
+        <p class="subtitle">
+            Filed against the actual weekly curriculum, including the Weeks 7-8 capstone
+            (multi-source ingestion, CDC, dbt, a served REST API) and a Week 9 presentation
+            template. Each folder's README documents exactly what was run and verified.
+        </p>
+        {% for w in weeks %}
+            <div class="lab-card">
+                <div>
+                    <h4>{{ w.week }} — {{ w.title }}</h4>
+                    <p>{{ w.description }}</p>
+                    <small class="text-muted">labs/{{ w.folder }}/</small>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

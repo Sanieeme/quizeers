@@ -1,0 +1,112 @@
+{
+  "quiz": {
+    "title": "Python for Data Engineering",
+    "description": "Core Python and Pandas skills used to build data pipelines: data structures, functions, file I/O, virtual environments, and DataFrame manipulation."
+  },
+  "questions": [
+    {
+      "question_text": "Which built-in Python data structure stores key-value pairs?",
+      "option_a": "Dictionary",
+      "option_b": "List",
+      "option_c": "Tuple",
+      "option_d": "Set",
+      "correct_answer": "Dictionary"
+    },
+    {
+      "question_text": "Which Python library is most commonly used for tabular data manipulation in data engineering?",
+      "option_a": "Pandas",
+      "option_b": "Matplotlib",
+      "option_c": "Flask",
+      "option_d": "Requests",
+      "correct_answer": "Pandas"
+    },
+    {
+      "question_text": "What does the Pandas method 'read_csv()' do?",
+      "option_a": "Loads data from a CSV file into a DataFrame",
+      "option_b": "Saves a DataFrame to a CSV file",
+      "option_c": "Deletes a CSV file",
+      "option_d": "Converts a DataFrame to JSON",
+      "correct_answer": "Loads data from a CSV file into a DataFrame"
+    },
+    {
+      "question_text": "In Pandas, which method removes rows containing missing values?",
+      "option_a": "dropna()",
+      "option_b": "fillna()",
+      "option_c": "merge()",
+      "option_d": "concat()",
+      "correct_answer": "dropna()"
+    },
+    {
+      "question_text": "What is the purpose of a Python virtual environment?",
+      "option_a": "To isolate project dependencies from the global Python installation",
+      "option_b": "To speed up Python code execution",
+      "option_c": "To compile Python into machine code",
+      "option_d": "To encrypt Python source files",
+      "correct_answer": "To isolate project dependencies from the global Python installation"
+    },
+    {
+      "question_text": "Which command creates a new virtual environment named 'venv'?",
+      "option_a": "python -m venv venv",
+      "option_b": "pip install venv",
+      "option_c": "python venv create",
+      "option_d": "virtualenv --start venv",
+      "correct_answer": "python -m venv venv"
+    },
+    {
+      "question_text": "What does 'pip install -r requirements.txt' do?",
+      "option_a": "Installs all packages listed in the requirements file",
+      "option_b": "Removes all installed packages",
+      "option_c": "Creates a requirements file",
+      "option_d": "Upgrades pip itself",
+      "correct_answer": "Installs all packages listed in the requirements file"
+    },
+    {
+      "question_text": "In Pandas, which method combines two DataFrames based on a shared column, similar to a SQL join?",
+      "option_a": "merge()",
+      "option_b": "append()",
+      "option_c": "sort_values()",
+      "option_d": "groupby() alone",
+      "correct_answer": "merge()"
+    },
+    {
+      "question_text": "What does a Pandas 'groupby()' operation typically precede?",
+      "option_a": "An aggregation function such as sum() or mean()",
+      "option_b": "Reading a file from disk",
+      "option_c": "Opening a database connection",
+      "option_d": "Installing a package",
+      "correct_answer": "An aggregation function such as sum() or mean()"
+    },
+    {
+      "question_text": "Which Python construct is best suited for repeating an action for each item in a list?",
+      "option_a": "A for loop",
+      "option_b": "A try/except block",
+      "option_c": "A class definition",
+      "option_d": "A lambda with no arguments",
+      "correct_answer": "A for loop"
+    },
+    {
+      "question_text": "What is the main advantage of using a Jupyter notebook for data engineering work?",
+      "option_a": "It lets you run code in cells and see output interactively, useful for exploring and testing pipeline steps",
+      "option_b": "It automatically deploys code to production",
+      "option_c": "It replaces the need for version control",
+      "option_d": "It only works with Java",
+      "correct_answer": "It lets you run code in cells and see output interactively, useful for exploring and testing pipeline steps"
+    },
+    {
+      "question_text": "Which Python keyword is used to handle exceptions so a pipeline doesn't crash on bad data?",
+      "option_a": "try/except",
+      "option_b": "if/elif",
+      "option_c": "for/else",
+      "option_d": "def/return",
+      "correct_answer": "try/except"
+    },
+    {
+      "question_text": "What does Pandas' 'to_json()' method do on a DataFrame?",
+      "option_a": "Converts the DataFrame into JSON format",
+      "option_b": "Converts JSON into a DataFrame",
+      "option_c": "Deletes JSON keys",
+      "option_d": "Validates JSON schema",
+      "correct_answer": "Converts the DataFrame into JSON format"
+    }
+  ]
+}

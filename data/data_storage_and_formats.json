@@ -1,0 +1,104 @@
+{
+  "quiz": {
+    "title": "Data Storage and File Formats",
+    "description": "How data is stored and represented: CSV, JSON, Parquet, Avro, object storage, and the trade-offs between row- and column-oriented formats."
+  },
+  "questions": [
+    {
+      "question_text": "Which file format stores data as comma-separated plain text rows?",
+      "option_a": "CSV",
+      "option_b": "Parquet",
+      "option_c": "Avro",
+      "option_d": "ORC",
+      "correct_answer": "CSV"
+    },
+    {
+      "question_text": "What type of storage format is Apache Parquet?",
+      "option_a": "Columnar",
+      "option_b": "Row-based",
+      "option_c": "Graph-based",
+      "option_d": "Key-value only",
+      "correct_answer": "Columnar"
+    },
+    {
+      "question_text": "Why are columnar formats like Parquet often preferred for analytical queries?",
+      "option_a": "They let queries read only the columns needed, reducing I/O",
+      "option_b": "They are the only format Python can read",
+      "option_c": "They cannot be compressed",
+      "option_d": "They store data as images",
+      "correct_answer": "They let queries read only the columns needed, reducing I/O"
+    },
+    {
+      "question_text": "What does 'schema-on-read' mean, as commonly applied to data lakes?",
+      "option_a": "The structure of the data is interpreted when it is read, not enforced when it is written",
+      "option_b": "Data must be validated before every write",
+      "option_c": "Data cannot be changed once written",
+      "option_d": "Schemas are stored as CSV files",
+      "correct_answer": "The structure of the data is interpreted when it is read, not enforced when it is written"
+    },
+    {
+      "question_text": "Which of these is an example of an object storage service?",
+      "option_a": "Amazon S3",
+      "option_b": "MySQL",
+      "option_c": "Redis",
+      "option_d": "Apache Kafka",
+      "correct_answer": "Amazon S3"
+    },
+    {
+      "question_text": "What is a key benefit of storing data in Avro format for streaming pipelines?",
+      "option_a": "It embeds a schema with the data, supporting schema evolution",
+      "option_b": "It cannot be used with Kafka",
+      "option_c": "It only supports images",
+      "option_d": "It requires no serialization",
+      "correct_answer": "It embeds a schema with the data, supporting schema evolution"
+    },
+    {
+      "question_text": "In a data lake architecture, raw, unprocessed data is often referred to as which layer?",
+      "option_a": "Bronze / raw layer",
+      "option_b": "Gold layer",
+      "option_c": "Presentation layer",
+      "option_d": "Application layer",
+      "correct_answer": "Bronze / raw layer"
+    },
+    {
+      "question_text": "Which compression consideration is most relevant when choosing a file format for large-scale storage?",
+      "option_a": "Balancing compression ratio against read/write speed",
+      "option_b": "Whether the file can be opened in Notepad",
+      "option_c": "Whether the format supports emojis",
+      "option_d": "The color of the file icon",
+      "correct_answer": "Balancing compression ratio against read/write speed"
+    },
+    {
+      "question_text": "What is a 'data lake'?",
+      "option_a": "A centralized repository that stores raw structured and unstructured data at scale",
+      "option_b": "A single table in a relational database",
+      "option_c": "A type of firewall",
+      "option_d": "A visualization dashboard",
+      "correct_answer": "A centralized repository that stores raw structured and unstructured data at scale"
+    },
+    {
+      "question_text": "Which format is typically preferred for row-by-row transactional writes rather than analytical scans?",
+      "option_a": "Row-based formats like CSV or JSON",
+      "option_b": "Parquet",
+      "option_c": "ORC",
+      "option_d": "Columnar formats in general",
+      "correct_answer": "Row-based formats like CSV or JSON"
+    },
+    {
+      "question_text": "What does 'partitioning' a dataset in storage (e.g., by date) primarily help with?",
+      "option_a": "Improving query performance by letting engines skip irrelevant partitions",
+      "option_b": "Encrypting the data",
+      "option_c": "Making the data human-readable",
+      "option_d": "Deleting old data automatically",
+      "correct_answer": "Improving query performance by letting engines skip irrelevant partitions"
+    },
+    {
+      "question_text": "What is a common downside of storing data only as JSON at very large scale?",
+      "option_a": "It is verbose and less efficient to scan than binary columnar formats",
+      "option_b": "It cannot represent nested data",
+      "option_c": "It cannot be parsed by any tool",
+      "option_d": "It is a row-oriented binary format",
+      "correct_answer": "It is verbose and less efficient to scan than binary columnar formats"
+    }
+  ]
+}

@@ -18,7 +18,7 @@ pip install -r requirements.txt
 # Data Engineering Basics quiz from data/data_engineering_basics.json
 python seed.py
 
-python app.py
+python run.py
 ```
 
 Then open http://127.0.0.1:5000 in your browser.
@@ -32,6 +32,43 @@ Then open http://127.0.0.1:5000 in your browser.
 Log in as the admin to add/edit/delete quizzes and questions from `/admin`, or as the demo user to take quizzes from the home page and see your scores under "My Results".
 
 To start over, stop the app and delete `quizeers.db`, then run `python seed.py` again.
+
+## Project structure
+
+The app follows a Flask application-factory + blueprints layout, so each
+concern lives in its own file rather than one large `app.py`:
+
+```
+quizeers/                  # the Flask application package
+  __init__.py               # create_app() -- the only place everything is wired together
+  config.py                 # Config classes
+  extensions.py             # db, login_manager instances (avoids circular imports)
+  models.py                 # User, Quiz, Question, Answer, Result, QuestionAttempt
+  decorators.py              # @admin_required
+  lab_catalog.py              # static data describing labs/ for the Labs pages
+  blueprints/
+    auth.py                   # register, login, logout
+    quizzes.py                 # home, take a quiz, view your own results, profile
+    admin.py                    # quiz/question CRUD, all-results view, user management
+    labs.py                      # labs overview + the live ETL demo
+    analytics.py                  # the ETL-powered learning-analytics dashboard
+  utils/
+    quiz_helpers.py            # answer shuffling, quiz-settings-from-form parsing
+    import_parsing.py           # bulk question import (JSON/CSV) parsing
+
+run.py                      # entry point: python3 run.py
+seed.py                     # loads demo users + all quizzes in data/
+analytics_etl/              # standalone ETL pipeline (separate from the web app on purpose --
+                             # see analytics_etl/pipeline.py's docstring)
+labs/                       # the full hands-on curriculum labs (see labs/README.md)
+templates/, static/         # Jinja templates and CSS
+data/                       # quiz question banks, one JSON file per quiz
+```
+
+Each blueprint only imports what it needs (models, its own utils) and
+never reaches into another blueprint's routes directly -- cross-blueprint
+navigation goes through `url_for("blueprint_name.view_name")`, same as any
+other Flask route reference.
 
 ## Features
 

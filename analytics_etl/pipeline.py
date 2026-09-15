@@ -4,7 +4,8 @@ pipeline.py -- runs the full analytics ETL: quizeers.db (operational)
 
 Run manually with:  python3 analytics_etl/pipeline.py
 In the app, the admin analytics dashboard has a button that calls run()
-directly (see app.py's /admin/analytics route) so the pipeline can be
+directly (see quizeers/blueprints/analytics.py's admin_analytics route) so
+the pipeline can be
 triggered on demand as new quiz attempts come in, in addition to being
 schedulable via cron/Airflow for a periodic refresh.
 """

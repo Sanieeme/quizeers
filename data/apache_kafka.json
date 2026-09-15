@@ -1,0 +1,88 @@
+{
+  "quiz": {
+    "title": "Apache Kafka",
+    "description": "Event streaming with Apache Kafka: topics, partitions, producers, consumers, and brokers."
+  },
+  "questions": [
+    {
+      "question_text": "What is Apache Kafka primarily used for?",
+      "option_a": "Publishing, storing, and subscribing to streams of events in real time",
+      "option_b": "Formatting spreadsheets",
+      "option_c": "Compiling Java code",
+      "option_d": "Managing user interface layouts",
+      "correct_answer": "Publishing, storing, and subscribing to streams of events in real time"
+    },
+    {
+      "question_text": "In Kafka, what is a 'topic'?",
+      "option_a": "A named stream of records that producers write to and consumers read from",
+      "option_b": "A single physical server",
+      "option_c": "A type of SQL join",
+      "option_d": "A user's login credentials",
+      "correct_answer": "A named stream of records that producers write to and consumers read from"
+    },
+    {
+      "question_text": "What does a Kafka 'producer' do?",
+      "option_a": "Publishes (writes) records to a Kafka topic",
+      "option_b": "Deletes topics permanently",
+      "option_c": "Only reads configuration files",
+      "option_d": "Manages the Kafka cluster's disks",
+      "correct_answer": "Publishes (writes) records to a Kafka topic"
+    },
+    {
+      "question_text": "What does a Kafka 'consumer' do?",
+      "option_a": "Reads and processes records from a Kafka topic",
+      "option_b": "Creates new brokers automatically",
+      "option_c": "Compiles the Kafka source code",
+      "option_d": "Formats the underlying disk",
+      "correct_answer": "Reads and processes records from a Kafka topic"
+    },
+    {
+      "question_text": "What is a Kafka 'partition' used for?",
+      "option_a": "Splitting a topic's data across multiple logs to allow parallelism and scalability",
+      "option_b": "Encrypting all messages in a topic",
+      "option_c": "Storing user passwords",
+      "option_d": "Rendering a dashboard",
+      "correct_answer": "Splitting a topic's data across multiple logs to allow parallelism and scalability"
+    },
+    {
+      "question_text": "What is a Kafka 'broker'?",
+      "option_a": "A server that stores data and serves client requests as part of a Kafka cluster",
+      "option_b": "A client-side Python library only",
+      "option_c": "A type of database index",
+      "option_d": "A visualization tool",
+      "correct_answer": "A server that stores data and serves client requests as part of a Kafka cluster"
+    },
+    {
+      "question_text": "What is a 'consumer group' in Kafka used for?",
+      "option_a": "Allowing multiple consumers to share the work of reading from a topic's partitions",
+      "option_b": "Grouping unrelated topics together permanently",
+      "option_c": "Deleting old messages immediately",
+      "option_d": "Encrypting consumer credentials",
+      "correct_answer": "Allowing multiple consumers to share the work of reading from a topic's partitions"
+    },
+    {
+      "question_text": "Why is Kafka often used as a central hub between many data producers and consumers?",
+      "option_a": "It decouples producers and consumers, letting them operate independently and at different speeds",
+      "option_b": "It requires producers and consumers to run on the same machine",
+      "option_c": "It only supports one consumer at a time",
+      "option_d": "It cannot handle more than 10 messages",
+      "correct_answer": "It decouples producers and consumers, letting them operate independently and at different speeds"
+    },
+    {
+      "question_text": "What does 'retention period' control in Kafka?",
+      "option_a": "How long messages are kept in a topic before being eligible for deletion",
+      "option_b": "How fast a consumer can read messages",
+      "option_c": "The number of brokers in a cluster",
+      "option_d": "The programming language used by producers",
+      "correct_answer": "How long messages are kept in a topic before being eligible for deletion"
+    },
+    {
+      "question_text": "Which of these is a common use case for Kafka in a data engineering pipeline?",
+      "option_a": "Streaming real-time events (e.g., clickstreams or sensor data) into downstream processing systems",
+      "option_b": "Storing a company's static HTML pages",
+      "option_c": "Managing user login sessions in a web app",
+      "option_d": "Compiling application source code",
+      "correct_answer": "Streaming real-time events (e.g., clickstreams or sensor data) into downstream processing systems"
+    }
+  ]
+}

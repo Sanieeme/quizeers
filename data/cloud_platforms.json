@@ -1,0 +1,104 @@
+{
+  "quiz": {
+    "title": "Cloud Platforms for Data Engineering (AWS, GCP, Azure)",
+    "description": "Core cloud concepts and services across AWS, Google Cloud Platform, and Azure relevant to data engineering."
+  },
+  "questions": [
+    {
+      "question_text": "What does 'IaaS' (Infrastructure as a Service) provide to a customer?",
+      "option_a": "Virtualized computing resources like servers and storage managed over the internet",
+      "option_b": "A fully finished application with no configuration needed",
+      "option_c": "Only a web browser plugin",
+      "option_d": "A single desktop application",
+      "correct_answer": "Virtualized computing resources like servers and storage managed over the internet"
+    },
+    {
+      "question_text": "Which AWS service is a widely used object storage service?",
+      "option_a": "Amazon S3",
+      "option_b": "Amazon EC2",
+      "option_c": "AWS Lambda",
+      "option_d": "Amazon Route 53",
+      "correct_answer": "Amazon S3"
+    },
+    {
+      "question_text": "Which AWS service provides a managed data warehouse?",
+      "option_a": "Amazon Redshift",
+      "option_b": "Amazon S3",
+      "option_c": "AWS IAM",
+      "option_d": "Amazon CloudFront",
+      "correct_answer": "Amazon Redshift"
+    },
+    {
+      "question_text": "Which Google Cloud Platform (GCP) service is a fully managed, serverless data warehouse?",
+      "option_a": "BigQuery",
+      "option_b": "Cloud Storage",
+      "option_c": "Compute Engine",
+      "option_d": "Cloud Functions",
+      "correct_answer": "BigQuery"
+    },
+    {
+      "question_text": "Which GCP service provides scalable object storage similar to Amazon S3?",
+      "option_a": "Google Cloud Storage",
+      "option_b": "BigQuery",
+      "option_c": "Cloud Pub/Sub",
+      "option_d": "Dataflow",
+      "correct_answer": "Google Cloud Storage"
+    },
+    {
+      "question_text": "Which Azure service provides a managed relational database as a service?",
+      "option_a": "Azure SQL Database",
+      "option_b": "Azure Blob Storage",
+      "option_c": "Azure Functions",
+      "option_d": "Azure DevOps",
+      "correct_answer": "Azure SQL Database"
+    },
+    {
+      "question_text": "Which Azure service is used for scalable, unstructured object storage?",
+      "option_a": "Azure Blob Storage",
+      "option_b": "Azure SQL Database",
+      "option_c": "Azure Data Factory",
+      "option_d": "Azure Active Directory",
+      "correct_answer": "Azure Blob Storage"
+    },
+    {
+      "question_text": "What is the main purpose of a managed orchestration service like AWS Step Functions, GCP's Cloud Composer, or Azure Data Factory?",
+      "option_a": "Coordinating and automating multi-step data workflows in the cloud",
+      "option_b": "Hosting a static website only",
+      "option_c": "Encrypting a single file",
+      "option_d": "Replacing the need for any compute resources",
+      "correct_answer": "Coordinating and automating multi-step data workflows in the cloud"
+    },
+    {
+      "question_text": "What is a key benefit of using cloud-managed services (e.g., managed Kafka or Spark) instead of self-hosting?",
+      "option_a": "Reduced operational overhead since the provider handles scaling, patching, and infrastructure",
+      "option_b": "They are always completely free",
+      "option_c": "They eliminate the need to write any code",
+      "option_d": "They only work with a single cloud region",
+      "correct_answer": "Reduced operational overhead since the provider handles scaling, patching, and infrastructure"
+    },
+    {
+      "question_text": "What does 'serverless' mean, as in AWS Lambda, GCP Cloud Functions, or Azure Functions?",
+      "option_a": "The cloud provider automatically manages the underlying servers, and code runs in response to events",
+      "option_b": "There are no servers involved anywhere in the world",
+      "option_c": "The code must run on the developer's own laptop",
+      "option_d": "It only refers to static websites",
+      "correct_answer": "The cloud provider automatically manages the underlying servers, and code runs in response to events"
+    },
+    {
+      "question_text": "Why might a data engineering team choose a multi-cloud or cloud-agnostic approach for parts of their pipeline?",
+      "option_a": "To avoid vendor lock-in and increase flexibility, though it can add complexity",
+      "option_b": "Because using more than one cloud provider is required by law",
+      "option_c": "Because a single cloud provider cannot store any data",
+      "option_d": "Because multi-cloud always reduces cost with no trade-offs",
+      "correct_answer": "To avoid vendor lock-in and increase flexibility, though it can add complexity"
+    },
+    {
+      "question_text": "Which concept describes paying only for the cloud resources actually consumed, rather than upfront hardware costs?",
+      "option_a": "Pay-as-you-go / consumption-based pricing",
+      "option_b": "Fixed perpetual licensing",
+      "option_c": "Barter system",
+      "option_d": "Flat one-time-only fee for unlimited use forever",
+      "correct_answer": "Pay-as-you-go / consumption-based pricing"
+    }
+  ]
+}

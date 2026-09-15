@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}ETL Pipeline Demo{% endblock %}
+
+{% block content %}
+    <style>
+        .container { max-width: 1100px; margin-top: 50px; }
+        h2 { text-align: center; color: #5f9ea0; font-weight: 700; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 20px; }
+        .stat-row { display: flex; gap: 16px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
+        .stat-card {
+            background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 16px 26px; text-align: center; min-width: 140px;
+        }
+        .stat-card .num { font-size: 1.8rem; font-weight: 700; color: #5f9ea0; }
+        table { background: #fff; border-radius: 8px; overflow: hidden; }
+        th { background-color: #f0f0f0; }
+        .rejected-row { background-color: #fff3f3; }
+    </style>
+
+    <div class="container">
+        <h2>ETL Pipeline — Live Demo</h2>
+        <p class="subtitle">
+            This runs the actual code in <code>labs/02_etl_pipeline/extract.py</code> and
+            <code>transform.py</code> against the sample data right now, on this server —
+            it's not a canned screenshot.
+        </p>
+
+        <form method="POST" class="text-center mb-4">
+            <button type="submit" class="btn btn-primary btn-lg">Run the pipeline</button>
+        </form>
+
+        {% if error %}
+            <div class="alert alert-danger">Pipeline error: {{ error }}</div>
+        {% endif %}
+
+        {% if result %}
+            <div class="stat-row">
+                <div class="stat-card"><div class="num">{{ result.raw_count }}</div>Raw rows</div>
+                <div class="stat-card"><div class="num">{{ result.clean_count }}</div>Valid rows</div>
+                <div class="stat-card"><div class="num">{{ result.rejected_count }}</div>Rejected rows</div>
+            </div>
+
+            <h4>Revenue by country (derived in the transform step)</h4>
+            <table class="table table-bordered mb-4">
+                <thead><tr><th>Country</th><th>Total revenue</th></tr></thead>
+                <tbody>
+                    {% for country, revenue in result.revenue_by_country.items() %}
+                        <tr><td>{{ country }}</td><td>{{ "%.2f"|format(revenue) }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h4>Clean rows loaded</h4>
+            <div class="table-responsive mb-4">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th><th>Customer</th><th>Product</th>
+                            <th>Qty</th><th>Unit price</th><th>Total</th><th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in result.clean_rows %}
+                            <tr>
+                                <td>{{ row.order_id }}</td>
+                                <td>{{ row.customer_name }}</td>
+                                <td>{{ row.product }}</td>
+                                <td>{{ row.quantity|int }}</td>
+                                <td>{{ "%.2f"|format(row.unit_price) }}</td>
+                                <td>{{ "%.2f"|format(row.total_price) }}</td>
+                                <td>{{ row.country }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Rejected rows (quarantined, not silently dropped)</h4>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th><th>Customer</th><th>Email</th><th>Product</th>
+                            <th>Qty</th><th>Unit price</th><th>Order date</th><th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in result.rejected_rows %}
+                            <tr class="rejected-row">
+                                <td>{{ row.order_id }}</td>
+                                <td>{{ row.customer_name or '—' }}</td>
+                                <td>{{ row.email or '—' }}</td>
+                                <td>{{ row.product or '—' }}</td>
+                                <td>{{ row.quantity if row.quantity is not none else '—' }}</td>
+                                <td>{{ row.unit_price if row.unit_price is not none else '—' }}</td>
+                                <td>{{ row.order_date or '—' }}</td>
+                                <td>{{ row.country or '—' }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        <p class="mt-4"><a href="{{ url_for('labs.labs_overview') }}">&larr; Back to Labs</a></p>
+    </div>
+{% endblock %}

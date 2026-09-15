@@ -1,0 +1,104 @@
+{
+  "quiz": {
+    "title": "Data Warehousing and Data Architecture",
+    "description": "Data warehouse concepts, OLAP vs OLTP, star and snowflake schemas, data lakes vs warehouses, and overall data architecture design."
+  },
+  "questions": [
+    {
+      "question_text": "What is the main purpose of a data warehouse?",
+      "option_a": "To store integrated, structured data optimized for analytics and reporting",
+      "option_b": "To run the live production application",
+      "option_c": "To send marketing emails",
+      "option_d": "To host a company website",
+      "correct_answer": "To store integrated, structured data optimized for analytics and reporting"
+    },
+    {
+      "question_text": "What does OLAP stand for?",
+      "option_a": "Online Analytical Processing",
+      "option_b": "Online Application Programming",
+      "option_c": "Offline Archive Processing",
+      "option_d": "Open Layer Access Protocol",
+      "correct_answer": "Online Analytical Processing"
+    },
+    {
+      "question_text": "How does OLTP differ from OLAP?",
+      "option_a": "OLTP handles many small transactional operations, while OLAP handles complex analytical queries over large datasets",
+      "option_b": "OLTP is only used for reporting",
+      "option_c": "OLAP is used to process payments",
+      "option_d": "There is no difference between them",
+      "correct_answer": "OLTP handles many small transactional operations, while OLAP handles complex analytical queries over large datasets"
+    },
+    {
+      "question_text": "In a star schema, what sits at the center, surrounded by dimension tables?",
+      "option_a": "A fact table",
+      "option_b": "A single dimension table",
+      "option_c": "An index",
+      "option_d": "A stored procedure",
+      "correct_answer": "A fact table"
+    },
+    {
+      "question_text": "What is a 'dimension table' in a data warehouse?",
+      "option_a": "A table containing descriptive attributes, such as customer or product details",
+      "option_b": "A table containing only numeric measures",
+      "option_c": "A temporary staging table",
+      "option_d": "A table used only for logging errors",
+      "correct_answer": "A table containing descriptive attributes, such as customer or product details"
+    },
+    {
+      "question_text": "What is the key difference between a data lake and a data warehouse?",
+      "option_a": "A data lake stores raw data in any format, while a warehouse stores structured, processed data for analysis",
+      "option_b": "A data lake only stores images",
+      "option_c": "A data warehouse cannot be queried with SQL",
+      "option_d": "They are exactly the same thing",
+      "correct_answer": "A data lake stores raw data in any format, while a warehouse stores structured, processed data for analysis"
+    },
+    {
+      "question_text": "What does the term 'data mart' typically refer to?",
+      "option_a": "A smaller, subject-specific subset of a data warehouse for a particular team or use case",
+      "option_b": "The physical building where servers are kept",
+      "option_c": "A backup of the entire company database",
+      "option_d": "A tool for writing Python code",
+      "correct_answer": "A smaller, subject-specific subset of a data warehouse for a particular team or use case"
+    },
+    {
+      "question_text": "What is a 'medallion architecture' (bronze/silver/gold) commonly used for?",
+      "option_a": "Organizing data lake data into progressively cleaned and refined layers",
+      "option_b": "Ranking employees by performance",
+      "option_c": "Encrypting database passwords",
+      "option_d": "Naming convention for API endpoints",
+      "correct_answer": "Organizing data lake data into progressively cleaned and refined layers"
+    },
+    {
+      "question_text": "What does 'data lineage' refer to?",
+      "option_a": "The traceable history of where data came from and how it was transformed",
+      "option_b": "The physical location of a data center",
+      "option_c": "A type of database index",
+      "option_d": "The speed of a network connection",
+      "correct_answer": "The traceable history of where data came from and how it was transformed"
+    },
+    {
+      "question_text": "What is a key goal of good data architecture in an organization?",
+      "option_a": "Ensuring data is reliable, accessible, secure, and scalable across systems",
+      "option_b": "Making sure only one person can ever access the data",
+      "option_c": "Storing all data in a single spreadsheet",
+      "option_d": "Avoiding the use of any cloud services",
+      "correct_answer": "Ensuring data is reliable, accessible, secure, and scalable across systems"
+    },
+    {
+      "question_text": "What is a 'snowflake schema'?",
+      "option_a": "A star schema where dimension tables are further normalized into related sub-tables",
+      "option_b": "A schema with no relationships between tables",
+      "option_c": "A schema used only for NoSQL databases",
+      "option_d": "A backup strategy for warehouses",
+      "correct_answer": "A star schema where dimension tables are further normalized into related sub-tables"
+    },
+    {
+      "question_text": "Why is metadata management important in data architecture?",
+      "option_a": "It helps teams understand, discover, and trust the data they are using",
+      "option_b": "It is required to compile Python code",
+      "option_c": "It replaces the need for a database",
+      "option_d": "It only matters for image files",
+      "correct_answer": "It helps teams understand, discover, and trust the data they are using"
+    }
+  ]
+}

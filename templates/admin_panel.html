@@ -167,14 +167,14 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ quiz.title }}</h5>
                             <div class="action-buttons">
-                                <a href="{{ url_for('admin_edit_quiz', quiz_id=quiz.id) }}" class="btn btn-warning">Edit</a>
-                                <a href="{{ url_for('admin_delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger">Delete</a>
+                                <a href="{{ url_for('admin.admin_edit_quiz', quiz_id=quiz.id) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ url_for('admin.admin_delete_quiz', quiz_id=quiz.id) }}" class="btn btn-danger">Delete</a>
                             </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <a href="{{ url_for('admin_add_quiz') }}" class="add-quiz-btn">Add New Quiz</a>
+        <a href="{{ url_for('admin.admin_add_quiz') }}" class="add-quiz-btn">Add New Quiz</a>
     </div>
 {% endblock %}

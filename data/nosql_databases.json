@@ -1,0 +1,96 @@
+{
+  "quiz": {
+    "title": "Non-Relational (NoSQL) Databases",
+    "description": "Non-relational database models including document, key-value, column-family, and graph stores, and when to use them."
+  },
+  "questions": [
+    {
+      "question_text": "What does NoSQL generally mean?",
+      "option_a": "A category of databases that don't primarily use the relational table model",
+      "option_b": "A database that only stores numbers",
+      "option_c": "A database with no query language at all",
+      "option_d": "A type of SQL syntax",
+      "correct_answer": "A category of databases that don't primarily use the relational table model"
+    },
+    {
+      "question_text": "Which of these is a document-oriented NoSQL database?",
+      "option_a": "MongoDB",
+      "option_b": "PostgreSQL",
+      "option_c": "MySQL",
+      "option_d": "Oracle Database",
+      "correct_answer": "MongoDB"
+    },
+    {
+      "question_text": "What is a typical unit of storage in a document database?",
+      "option_a": "A JSON-like document",
+      "option_b": "A row in a fixed-schema table",
+      "option_c": "A binary tree node",
+      "option_d": "A stored procedure",
+      "correct_answer": "A JSON-like document"
+    },
+    {
+      "question_text": "Which NoSQL data model stores data as simple key-to-value pairs, ideal for caching?",
+      "option_a": "Key-value store",
+      "option_b": "Graph database",
+      "option_c": "Relational table",
+      "option_d": "Column-family store",
+      "correct_answer": "Key-value store"
+    },
+    {
+      "question_text": "Which of these is commonly used as an in-memory key-value store for caching?",
+      "option_a": "Redis",
+      "option_b": "PostgreSQL",
+      "option_c": "Hadoop HDFS",
+      "option_d": "Airflow",
+      "correct_answer": "Redis"
+    },
+    {
+      "question_text": "What kind of database is optimized for storing and traversing relationships, such as social networks?",
+      "option_a": "Graph database",
+      "option_b": "Document database",
+      "option_c": "Columnar warehouse",
+      "option_d": "Key-value store",
+      "correct_answer": "Graph database"
+    },
+    {
+      "question_text": "What is a common trade-off NoSQL databases make according to the CAP theorem, compared to strict relational consistency?",
+      "option_a": "They often favor availability and partition tolerance over strong consistency",
+      "option_b": "They guarantee perfect consistency at all times",
+      "option_c": "They cannot be distributed across servers",
+      "option_d": "They only run on a single machine",
+      "correct_answer": "They often favor availability and partition tolerance over strong consistency"
+    },
+    {
+      "question_text": "Which of these is a wide-column NoSQL store designed for very large, distributed datasets?",
+      "option_a": "Apache Cassandra",
+      "option_b": "SQLite",
+      "option_c": "Microsoft Access",
+      "option_d": "MariaDB",
+      "correct_answer": "Apache Cassandra"
+    },
+    {
+      "question_text": "What does 'schema-less' mean in the context of many NoSQL databases?",
+      "option_a": "Documents or records in the same collection can have different fields",
+      "option_b": "Every record must follow an identical fixed schema",
+      "option_c": "The database cannot store any data",
+      "option_d": "Only numeric data can be stored",
+      "correct_answer": "Documents or records in the same collection can have different fields"
+    },
+    {
+      "question_text": "Why might a data engineer choose a NoSQL database over a relational one for a use case?",
+      "option_a": "The data is unstructured or semi-structured and needs to scale horizontally",
+      "option_b": "SQL queries are required",
+      "option_c": "Strict multi-table transactions are the main requirement",
+      "option_d": "The dataset is small and fits in one table",
+      "correct_answer": "The data is unstructured or semi-structured and needs to scale horizontally"
+    },
+    {
+      "question_text": "What does 'horizontal scaling' mean for a database?",
+      "option_a": "Adding more machines to distribute the load",
+      "option_b": "Adding more columns to a table",
+      "option_c": "Increasing the CPU speed of a single server",
+      "option_d": "Reducing the number of servers",
+      "correct_answer": "Adding more machines to distribute the load"
+    }
+  ]
+}

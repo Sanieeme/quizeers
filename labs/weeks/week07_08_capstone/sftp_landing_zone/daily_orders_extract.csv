@@ -1,0 +1,4 @@
+order_id,customer_name,product,quantity,unit_price,order_date,country
+5001,Kabelo Mokoena,Widget A,4,9.99,2026-02-01,South Africa
+5002,Sipho Ndlovu,Widget C,1,4.25,2026-02-01,South Africa
+5003,Nomvula Zulu,Widget B,2,24.50,2026-02-02,South Africa
