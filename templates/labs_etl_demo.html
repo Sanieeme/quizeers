@@ -22,8 +22,14 @@
         <h2>ETL Pipeline — Live Demo</h2>
         <p class="subtitle">
             This runs the actual code in <code>labs/02_etl_pipeline/extract.py</code> and
-            <code>transform.py</code> against the sample data right now, on this server —
-            it's not a canned screenshot.
+            <code>transform.py</code> against a sample quiz-attempts log right now, on this
+            server — it's not a canned screenshot. It's the same shape of pipeline
+            {% if current_user.is_admin %}
+                <a href="{{ url_for('analytics.admin_analytics') }}">Analytics</a>
+            {% else %}
+                Analytics
+            {% endif %}
+            runs for real against the live quiz database.
         </p>
 
         <form method="POST" class="text-center mb-4">
@@ -41,12 +47,12 @@
                 <div class="stat-card"><div class="num">{{ result.rejected_count }}</div>Rejected rows</div>
             </div>
 
-            <h4>Revenue by country (derived in the transform step)</h4>
+            <h4>Average score by category (derived in the transform step)</h4>
             <table class="table table-bordered mb-4">
-                <thead><tr><th>Country</th><th>Total revenue</th></tr></thead>
+                <thead><tr><th>Category</th><th>Average score</th></tr></thead>
                 <tbody>
-                    {% for country, revenue in result.revenue_by_country.items() %}
-                        <tr><td>{{ country }}</td><td>{{ "%.2f"|format(revenue) }}</td></tr>
+                    {% for category, score in result.score_by_category.items() %}
+                        <tr><td>{{ category }}</td><td>{{ "%.2f"|format(score) }}%</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -56,20 +62,20 @@
                 <table class="table table-sm table-bordered">
                     <thead>
                         <tr>
-                            <th>Order ID</th><th>Customer</th><th>Product</th>
-                            <th>Qty</th><th>Unit price</th><th>Total</th><th>Country</th>
+                            <th>Attempt ID</th><th>User</th><th>Quiz</th><th>Category</th>
+                            <th>Correct / Total</th><th>Score %</th><th>Attempted at</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for row in result.clean_rows %}
                             <tr>
-                                <td>{{ row.order_id }}</td>
-                                <td>{{ row.customer_name }}</td>
-                                <td>{{ row.product }}</td>
-                                <td>{{ row.quantity|int }}</td>
-                                <td>{{ "%.2f"|format(row.unit_price) }}</td>
-                                <td>{{ "%.2f"|format(row.total_price) }}</td>
-                                <td>{{ row.country }}</td>
+                                <td>{{ row.attempt_id }}</td>
+                                <td>{{ row.user_name }}</td>
+                                <td>{{ row.quiz_title }}</td>
+                                <td>{{ row.category }}</td>
+                                <td>{{ row.questions_correct|int }} / {{ row.questions_total|int }}</td>
+                                <td>{{ "%.2f"|format(row.score_percent) }}</td>
+                                <td>{{ row.attempted_at }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -81,21 +87,20 @@
                 <table class="table table-sm table-bordered">
                     <thead>
                         <tr>
-                            <th>Order ID</th><th>Customer</th><th>Email</th><th>Product</th>
-                            <th>Qty</th><th>Unit price</th><th>Order date</th><th>Country</th>
+                            <th>Attempt ID</th><th>User</th><th>Email</th><th>Quiz</th>
+                            <th>Questions correct</th><th>Questions total</th><th>Attempted at</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for row in result.rejected_rows %}
                             <tr class="rejected-row">
-                                <td>{{ row.order_id }}</td>
-                                <td>{{ row.customer_name or '—' }}</td>
+                                <td>{{ row.attempt_id }}</td>
+                                <td>{{ row.user_name or '—' }}</td>
                                 <td>{{ row.email or '—' }}</td>
-                                <td>{{ row.product or '—' }}</td>
-                                <td>{{ row.quantity if row.quantity is not none else '—' }}</td>
-                                <td>{{ row.unit_price if row.unit_price is not none else '—' }}</td>
-                                <td>{{ row.order_date or '—' }}</td>
-                                <td>{{ row.country or '—' }}</td>
+                                <td>{{ row.quiz_title or '—' }}</td>
+                                <td>{{ row.questions_correct if row.questions_correct is not none else '—' }}</td>
+                                <td>{{ row.questions_total if row.questions_total is not none else '—' }}</td>
+                                <td>{{ row.attempted_at or '—' }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

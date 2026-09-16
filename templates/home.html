@@ -30,6 +30,18 @@
                             </p>
                             <p class="card-text">{{ quiz.description }}</p>
 
+                            {% set labs = quiz_labs.get(quiz.id, []) %}
+                            {% if labs and current_user.is_authenticated %}
+                                <p>
+                                    <small class="text-muted">
+                                        Hands-on lab{{ 's' if labs|length > 1 else '' }}:
+                                        {% for lab in labs %}
+                                            <a href="{{ url_for('labs.labs_overview') }}#lab-{{ lab.slug }}">{{ lab.title }}</a>{{ ", " if not loop.last }}
+                                        {% endfor %}
+                                    </small>
+                                </p>
+                            {% endif %}
+
                             {% if current_user.is_authenticated %}
                                 {% set best = best_scores.get(quiz.id) %}
                                 {% set used = attempt_counts.get(quiz.id, 0) %}

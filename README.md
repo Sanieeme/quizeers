@@ -5,7 +5,30 @@ WTC-SHVZT25U
 
 ## Quiz content
 
-- `data/data_engineering_basics.json` — a 13-question quiz covering the role of a data engineer, the ETL pipeline, Unix/Linux and the Bash terminal, Python with Pandas, and a hands-on Jupyter notebook project (fork a GitLab repo, implement a simple ETL pipeline in Python, submit for auto-grading). Field names (`question_text`, `option_a`–`option_d`, `correct_answer`) match the admin "Add Questions" form, so the questions can be entered as-is through the admin panel or loaded with a seed script.
+`data/` holds one JSON file per quiz, covering the full 9-week Data Engineering
+curriculum end to end. `seed.py` loads all of them on startup, in the order
+the material is taught:
+
+| File | Quiz | Questions |
+|---|---|---|
+| `data_engineering_basics.json` | Data Engineering Basics | 13 |
+| `python_for_data_engineering.json` | Python for Data Engineering | 13 |
+| `data_storage_and_formats.json` | Data Storage and File Formats | 12 |
+| `relational_databases_sql.json` | Relational Databases and SQL | 13 |
+| `nosql_databases.json` | Non-Relational (NoSQL) Databases | 11 |
+| `data_warehousing_and_architecture.json` | Data Warehousing and Data Architecture | 12 |
+| `data_ingestion_methods.json` | Data Ingestion Methods | 10 |
+| `apache_spark.json` | Apache Spark | 11 |
+| `apache_kafka.json` | Apache Kafka | 10 |
+| `apache_airflow.json` | Apache Airflow | 10 |
+| `batch_and_stream_processing.json` | Batch and Stream Processing | 10 |
+| `cloud_platforms.json` | Cloud Platforms for Data Engineering (AWS, GCP, Azure) | 12 |
+
+Each file mirrors the same 8 topics covered hands-on in `labs/` (ETL, databases,
+Spark, Kafka, Airflow, cloud, batch/stream), plus the Unix/shell and Python
+fundamentals the labs assume. Field names (`question_text`, `option_a`–`option_d`,
+`correct_answer`) match the admin "Add Questions" form, so questions can be
+entered as-is through the admin panel or loaded with the seed script.
 
 ## Running the app
 
@@ -89,3 +112,18 @@ other Flask route reference.
 
 **Account**
 - Profile page with quiz history and a change-password form (`/profile`)
+
+**Quiz ↔ Lab linking**
+- `quizeers/lab_catalog.py` maps each lab (and each week of the full
+  syllabus) to the `Quiz.title`(s) it's the hands-on counterpart to — one
+  lab can back several quizzes (`03_databases` → Relational DBs & SQL,
+  NoSQL, and Data Warehousing all at once) and the mapping resolves
+  against the real Quiz table on every request, so it never points at a
+  deleted or renamed quiz.
+- On `/labs`, every lab and every week card shows badges linking straight
+  to its matching quiz/quizzes ("Practice this on: ...").
+- On the home page, every quiz card that has a matching lab shows a
+  "Hands-on lab" link back to `/labs#lab-<slug>`.
+- A lab with no quiz yet says so ("No matching quiz yet") rather than
+  guessing a link — currently that's just the Week 6 (governance) and
+  Week 9 (demo/presentation) syllabus weeks, which aren't quizzed.

@@ -19,21 +19,26 @@
             gap: 20px;
         }
         .lab-card h4 { margin: 0 0 6px 0; color: #333; }
-        .lab-card p { margin: 0; color: #555; }
+        .lab-card p { margin: 0 0 8px 0; color: #555; }
         .badge-runnable { background: #2ecc71; }
         .badge-reference { background: #95a5a6; }
+        .related-quizzes { margin-top: 8px; }
+        .related-quizzes .label { color: #888; margin-right: 6px; }
+        .related-quizzes a.badge { text-decoration: none; }
+        .no-quiz-yet { color: #999; font-style: italic; }
     </style>
 
     <div class="container">
+        <p><a href="{{ url_for('quizzes.home') }}">&larr; Back to Quizzes</a></p>
         <h2>Data Engineering Labs</h2>
         <p class="subtitle">
-            Hands-on code covering the same curriculum as the quizzes — ETL, databases,
-            Spark, Kafka, Airflow, batch/stream processing, and cloud platforms.
+            Every lab below is the hands-on counterpart to one or more quizzes —
+            the quiz checks you know the topic, the lab proves you can build it.
         </p>
 
         {% for lab in labs %}
-            <div class="lab-card">
-                <div>
+            <div class="lab-card" id="lab-{{ lab.slug }}">
+                <div style="flex: 1;">
                     <h4>
                         {{ lab.title }}
                         {% if lab.runnable %}
@@ -44,6 +49,16 @@
                     </h4>
                     <p>{{ lab.description }}</p>
                     <small class="text-muted">labs/{{ lab.folder }}/</small>
+                    <div class="related-quizzes">
+                        {% if lab.related_quizzes %}
+                            <span class="label">Practice this on:</span>
+                            {% for quiz in lab.related_quizzes %}
+                                <a href="{{ url_for('quizzes.take_quiz', quiz_id=quiz.id) }}" class="badge rounded-pill bg-primary">{{ quiz.title }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <span class="no-quiz-yet">No matching quiz yet</span>
+                        {% endif %}
+                    </div>
                 </div>
                 {% if lab.runnable %}
                     <a href="{{ url_for('labs.labs_etl_demo') }}" class="btn btn-primary">Run it</a>
@@ -59,10 +74,20 @@
         </p>
         {% for w in weeks %}
             <div class="lab-card">
-                <div>
+                <div style="flex: 1;">
                     <h4>{{ w.week }} — {{ w.title }}</h4>
                     <p>{{ w.description }}</p>
                     <small class="text-muted">labs/{{ w.folder }}/</small>
+                    <div class="related-quizzes">
+                        {% if w.related_quizzes %}
+                            <span class="label">Matching quiz{{ 'zes' if w.related_quizzes|length > 1 else '' }}:</span>
+                            {% for quiz in w.related_quizzes %}
+                                <a href="{{ url_for('quizzes.take_quiz', quiz_id=quiz.id) }}" class="badge rounded-pill bg-primary">{{ quiz.title }}</a>
+                            {% endfor %}
+                        {% else %}
+                            <span class="no-quiz-yet">No matching quiz yet</span>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         {% endfor %}

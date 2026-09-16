@@ -9,10 +9,23 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 
 from quizeers.extensions import db
+from quizeers.lab_catalog import LAB_CATALOG
 from quizeers.models import Quiz, Result, QuestionAttempt
 from quizeers.utils.quiz_helpers import with_shuffled_answers
 
 bp = Blueprint("quizzes", __name__)
+
+
+def _labs_by_quiz_title():
+    """Reverse of LAB_CATALOG's related_quiz_titles: quiz title -> list of
+    lab entries that quiz is the written-test counterpart to. Built from the
+    same LAB_CATALOG data labs_overview() reads, so the two directions of
+    the quiz<->lab link never drift apart."""
+    mapping = {}
+    for lab in LAB_CATALOG:
+        for title in lab.get("related_quiz_titles", []):
+            mapping.setdefault(title, []).append(lab)
+    return mapping
 
 
 @bp.route("/")
@@ -35,6 +48,9 @@ def home():
             attempt_counts[quiz.id] = len(results)
             best_scores[quiz.id] = max((r.score for r in results), default=None)
 
+    labs_by_title = _labs_by_quiz_title()
+    quiz_labs = {quiz.id: labs_by_title.get(quiz.title, []) for quiz in quizzes}
+
     return render_template(
         "home.html",
         quizzes=quizzes,
@@ -42,6 +58,7 @@ def home():
         selected_category=category,
         attempt_counts=attempt_counts,
         best_scores=best_scores,
+        quiz_labs=quiz_labs,
     )
 
 
