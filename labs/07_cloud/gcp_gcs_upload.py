@@ -33,7 +33,7 @@ def ensure_bucket(bucket_name: str):
         pass  # already exists
 
 
-def upload_directory(bucket_name: str, local_dir: str, prefix: str = "orders/"):
+def upload_directory(bucket_name: str, local_dir: str, prefix: str = "quiz-attempts/"):
     client = get_client()
     bucket = client.bucket(bucket_name)
     uploaded = []
@@ -48,13 +48,13 @@ def upload_directory(bucket_name: str, local_dir: str, prefix: str = "orders/"):
     return uploaded
 
 
-def list_bucket(bucket_name: str, prefix: str = "orders/"):
+def list_bucket(bucket_name: str, prefix: str = "quiz-attempts/"):
     client = get_client()
     return [b.name for b in client.list_blobs(bucket_name, prefix=prefix)]
 
 
 if __name__ == "__main__":
-    BUCKET = os.environ.get("DEMO_BUCKET", "data-engineering-labs-demo")
+    BUCKET = os.environ.get("DEMO_BUCKET", "quizeers-analytics-demo")
     ensure_bucket(BUCKET)
     upload_directory(BUCKET, LOCAL_PARQUET_DIR)
     print("[gcs] objects now in bucket:", list_bucket(BUCKET))

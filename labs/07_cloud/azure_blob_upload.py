@@ -29,7 +29,7 @@ def ensure_container(container_name: str):
         pass  # already exists
 
 
-def upload_directory(container_name: str, local_dir: str, prefix: str = "orders/"):
+def upload_directory(container_name: str, local_dir: str, prefix: str = "quiz-attempts/"):
     conn_str = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
     service = BlobServiceClient.from_connection_string(conn_str)
     container = service.get_container_client(container_name)
@@ -47,7 +47,7 @@ def upload_directory(container_name: str, local_dir: str, prefix: str = "orders/
     return uploaded
 
 
-def list_container(container_name: str, prefix: str = "orders/"):
+def list_container(container_name: str, prefix: str = "quiz-attempts/"):
     conn_str = os.environ["AZURE_STORAGE_CONNECTION_STRING"]
     service = BlobServiceClient.from_connection_string(conn_str)
     container = service.get_container_client(container_name)
@@ -55,7 +55,7 @@ def list_container(container_name: str, prefix: str = "orders/"):
 
 
 if __name__ == "__main__":
-    CONTAINER = os.environ.get("DEMO_CONTAINER", "data-engineering-labs-demo")
+    CONTAINER = os.environ.get("DEMO_CONTAINER", "quizeers-analytics-demo")
     ensure_container(CONTAINER)
     upload_directory(CONTAINER, LOCAL_PARQUET_DIR)
     print("[azure] blobs now in container:", list_container(CONTAINER))

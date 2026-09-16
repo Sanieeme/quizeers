@@ -12,14 +12,14 @@ from pyspark.sql import functions as F
 from pyspark.sql.types import DoubleType, IntegerType
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-INPUT_CSV = os.path.join(HERE, "..", "02_etl_pipeline", "sample_data", "orders_raw.csv")
+INPUT_CSV = os.path.join(HERE, "..", "02_etl_pipeline", "sample_data", "quiz_attempts_raw.csv")
 OUTPUT_PARQUET = os.path.join(HERE, "output_parquet")
 
 
 def main():
     spark = (
         SparkSession.builder
-        .appName("orders-etl")
+        .appName("quiz-attempts-etl")
         .master("local[*]")
         .config("spark.sql.ansi.enabled", "false")  # let bad casts become NULL instead of raising,
         .getOrCreate()                               # so we can quarantine bad rows like the pandas version does
@@ -30,19 +30,19 @@ def main():
     raw = spark.read.option("header", True).csv(INPUT_CSV)
     print(f"[spark] read {raw.count()} raw rows")
 
-    # Transform: trim strings, coerce types, derive total_price, drop bad rows
+    # Transform: trim strings, coerce types, derive score_percent, drop bad rows
     df = raw
-    for col in ["customer_name", "email", "product", "country"]:
+    for col in ["user_name", "email", "quiz_title", "category"]:
         df = df.withColumn(col, F.trim(F.col(col)))
 
     df = (
-        df.withColumn("quantity", F.col("quantity").cast(IntegerType()))
-          .withColumn("unit_price", F.col("unit_price").cast(DoubleType()))
-          .withColumn("order_date", F.to_date("order_date", "yyyy-MM-dd"))
+        df.withColumn("questions_total", F.col("questions_total").cast(IntegerType()))
+          .withColumn("questions_correct", F.col("questions_correct").cast(IntegerType()))
+          .withColumn("attempted_at", F.to_date("attempted_at", "yyyy-MM-dd"))
     )
 
-    string_required = ["customer_name", "email", "product"]
-    typed_required = ["quantity", "unit_price", "order_date"]  # already cast to numeric/date types above
+    string_required = ["user_name", "email", "quiz_title"]
+    typed_required = ["questions_total", "questions_correct", "attempted_at"]  # already cast above
 
     valid_condition = None
     for col in string_required:
@@ -53,21 +53,21 @@ def main():
         valid_condition = valid_condition & cond
 
     clean = df.filter(valid_condition).withColumn(
-        "total_price", F.round(F.col("quantity") * F.col("unit_price"), 2)
+        "score_percent", F.round(F.col("questions_correct") / F.col("questions_total") * 100, 2)
     )
     rejected = df.filter(~valid_condition)
 
     print(f"[spark] {clean.count()} valid rows, {rejected.count()} rejected rows")
 
-    # Aggregation example: total revenue per country, computed distributed-ly
-    print("[spark] revenue by country:")
-    clean.groupBy("country").agg(F.sum("total_price").alias("revenue")) \
-         .orderBy(F.desc("revenue")).show()
+    # Aggregation example: average score per quiz category, computed distributed-ly
+    print("[spark] average score by category:")
+    clean.groupBy("category").agg(F.round(F.avg("score_percent"), 2).alias("avg_score")) \
+         .orderBy(F.desc("avg_score")).show()
 
     # Load: write as partitioned Parquet, the columnar format covered in
     # 03/data_storage material — this is what a Spark job would hand off to
     # a warehouse loader or downstream consumer.
-    clean.write.mode("overwrite").partitionBy("country").parquet(OUTPUT_PARQUET)
+    clean.write.mode("overwrite").partitionBy("category").parquet(OUTPUT_PARQUET)
     print(f"[spark] wrote partitioned Parquet output to {OUTPUT_PARQUET}")
 
     spark.stop()

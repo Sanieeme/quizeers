@@ -1,6 +1,6 @@
 """
 A runnable, broker-free simulation of the producer/consumer/topic/partition
-concepts from producer.py and consumer.py — useful for demonstrating and
+concepts from producer.py and consumer.py -- useful for demonstrating and
 testing the *logic* of a streaming pipeline without standing up a real
 Kafka cluster.
 
@@ -44,45 +44,49 @@ class SimulatedTopic:
 
 
 def running_totals_consumer():
-    """Returns a stateful handler that keeps a running revenue total per
-    country — demonstrating the kind of stateful aggregation a real stream
-    processor (Kafka Streams, Spark Structured Streaming, Flink) would do."""
-    totals = {}
+    """Returns a stateful handler that keeps a running average score per
+    quiz category -- demonstrating the kind of stateful aggregation a real
+    stream processor (Kafka Streams, Spark Structured Streaming, Flink)
+    would do."""
+    sums = {}
+    counts = {}
+    averages = {}
 
     def handle(partition, event):
-        country = event["country"]
-        revenue = event["quantity"] * event["unit_price"]
-        totals[country] = totals.get(country, 0) + revenue
-        print(f"[consumer] partition={partition} processed order {event['order_id']} "
-              f"-> running total for {country}: {totals[country]:.2f}")
+        category = event["category"]
+        sums[category] = sums.get(category, 0) + event["score_percent"]
+        counts[category] = counts.get(category, 0) + 1
+        averages[category] = round(sums[category] / counts[category], 2)
+        print(f"[consumer] partition={partition} processed attempt {event['attempt_id']} "
+              f"-> running average score for {category}: {averages[category]}")
 
-    return handle, totals
+    return handle, averages
 
 
 def main():
-    orders_topic = SimulatedTopic("orders", num_partitions=3)
+    attempts_topic = SimulatedTopic("quiz_attempts", num_partitions=3)
 
     sample_events = [
-        {"order_id": 3001, "product": "Widget A", "quantity": 3, "unit_price": 9.99, "country": "South Africa"},
-        {"order_id": 3002, "product": "Widget B", "quantity": 1, "unit_price": 24.50, "country": "USA"},
-        {"order_id": 3003, "product": "Widget A", "quantity": 2, "unit_price": 9.99, "country": "South Africa"},
-        {"order_id": 3004, "product": "Widget C", "quantity": 5, "unit_price": 4.25, "country": "Kenya"},
-        {"order_id": 3005, "product": "Widget B", "quantity": 2, "unit_price": 24.50, "country": "USA"},
+        {"attempt_id": 6001, "quiz_title": "Apache Kafka", "category": "Processing", "score_percent": 70.0},
+        {"attempt_id": 6002, "quiz_title": "Apache Airflow", "category": "Orchestration", "score_percent": 100.0},
+        {"attempt_id": 6003, "quiz_title": "Apache Spark", "category": "Processing", "score_percent": 81.82},
+        {"attempt_id": 6004, "quiz_title": "Relational Databases and SQL", "category": "Databases", "score_percent": 92.31},
+        {"attempt_id": 6005, "quiz_title": "Data Ingestion Methods", "category": "Processing", "score_percent": 60.0},
     ]
 
-    # Produce: each event is keyed by order_id, same pattern as producer.py
+    # Produce: each event is keyed by attempt_id, same pattern as producer.py
     for event in sample_events:
         event_with_ts = {**event, "event_time": datetime.now(timezone.utc).isoformat()}
-        orders_topic.produce(key=str(event["order_id"]), value=event_with_ts)
+        attempts_topic.produce(key=str(event["attempt_id"]), value=event_with_ts)
 
     print()
     # Consume: process every partition and keep a running aggregate,
     # like a stream-processing job would
-    handle, totals = running_totals_consumer()
-    orders_topic.consume_all(handle)
+    handle, averages = running_totals_consumer()
+    attempts_topic.consume_all(handle)
 
-    print("\n[consumer] final running totals by country:", totals)
-    return totals
+    print("\n[consumer] final running average scores by category:", averages)
+    return averages
 
 
 if __name__ == "__main__":

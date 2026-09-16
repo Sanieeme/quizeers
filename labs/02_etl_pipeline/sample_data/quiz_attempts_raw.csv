@@ -1,0 +1,11 @@
+attempt_id,user_name,email,quiz_title,category,questions_total,questions_correct,attempted_at
+5001,Alice Ng, alice@example.com ,Data Engineering Basics,Fundamentals,13,11,2026-02-01
+5002,Bob Smith,bob@example.com,Apache Kafka,Processing,10,7,2026-02-02
+5003,,carol@example.com,Relational Databases and SQL,Databases,13,9,2026-02-02
+5004,Dana Lee,dana@example.com,Apache Airflow,Orchestration,10,10,2026-02-03
+5005,Evan Cho,evan@example.com,Apache Spark,Processing,11,,2026-02-03
+5006,Fay Osei,fay@example.com,Data Engineering Basics,Fundamentals,13,13,2026-02-04
+5007,Grace Kim,grace@example.com,Cloud Platforms for Data Engineering,Cloud,12,8,2026-02-04
+5008,Hassan Ali,hassan@example.com,Batch and Stream Processing,Processing,10,6,not-a-date
+5009,Ivy Chen,ivy@example.com,Non-Relational (NoSQL) Databases,Databases,11,9,2026-02-05
+5010,Jon Park,jon@example.com,Data Warehousing and Data Architecture,Databases,12,10,2026-02-06

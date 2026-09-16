@@ -6,22 +6,31 @@ Unix/Linux, Python, data storage, relational & non-relational databases,
 data warehousing/architecture, ingestion methods, Apache Spark, Apache
 Kafka, Apache Airflow, batch/stream processing, and AWS/GCP/Azure.
 
-Everything under `02_etl_pipeline/` through `08_batch_stream/` was actually
-run and verified while building this repo (see "What's verified" below) —
-this isn't just reference code, it's a working, if small, data platform.
+Every lab runs on the same sample dataset -- a small, deliberately messy
+log of **quiz attempts** (`02_etl_pipeline/sample_data/quiz_attempts_raw.csv`),
+not generic e-commerce data. That's on purpose: this repo is the "I built
+this" companion to Quizeers specifically, so the pipeline you're extracting,
+transforming, loading, warehousing, streaming, and shipping to the cloud is
+built from the same domain the quiz app itself runs on -- quiz titles,
+categories, scores, attempt timestamps. It's the same shape of pipeline
+`analytics_etl/` runs for real against the live `quizeers.db`, just worked
+by hand on a small sample so every step is visible.
+
+See "What's verified" below for exactly which scripts were actually run
+against this dataset while building this repo.
 
 ## Layout
 
 | Folder | Curriculum topic | What it demonstrates |
 |---|---|---|
-| `01_unix_shell/` | Unix/Linux | `ls`, `grep`, `cut`, `awk`, `sort \| uniq -c` piped together to inspect a raw data file from the command line |
-| `02_etl_pipeline/` | ETL, Python | A real Extract → Transform → Load pipeline in Pandas; quarantines bad rows instead of silently dropping them |
-| `03_databases/` | Relational & non-relational DBs, data warehousing | A star schema (fact + dimension tables) built from the ETL output, plus a document-store (NoSQL) demo with TinyDB for contrast |
-| `04_spark/` | Apache Spark | The same ETL logic re-implemented with PySpark's DataFrame API, run in local cluster mode, writing partitioned Parquet |
-| `05_kafka/` | Apache Kafka, ingestion methods | Real Kafka producer/consumer scripts for a live broker, plus a runnable broker-free simulation of topics/partitions/consumer groups |
-| `06_airflow/` | Apache Airflow, orchestration | A real Airflow DAG (`extract >> transform >> load`) that runs the ETL pipeline on a schedule with retries |
-| `07_cloud/` | AWS, GCP, Azure | Upload scripts for S3 / GCS / Blob Storage; the AWS one is verified against a mocked S3 bucket |
-| `08_batch_stream/` | Batch vs. stream processing | Runs the same data through a batch job and a simulated stream job side by side to make the latency/consistency trade-off concrete |
+| `01_unix_shell/` | Unix/Linux | `ls`, `grep`, `cut`, `awk`, `sort \| uniq -c` piped together to inspect a raw quiz-attempts log from the command line |
+| `02_etl_pipeline/` | ETL, Python | A real Extract → Transform → Load pipeline in Pandas on quiz-attempt records; quarantines bad rows instead of silently dropping them |
+| `03_databases/` | Relational & non-relational DBs, data warehousing | A star schema (`dim_user`, `dim_quiz`, `dim_date`, `fact_attempt`) built from the ETL output, plus a document-store (NoSQL) demo of the same attempts with TinyDB for contrast |
+| `04_spark/` | Apache Spark | The same quiz-attempts ETL logic re-implemented with PySpark's DataFrame API, run in local cluster mode, writing Parquet partitioned by quiz category |
+| `05_kafka/` | Apache Kafka, ingestion methods | Real Kafka producer/consumer scripts that stream quiz-attempt events to a live broker, plus a runnable broker-free simulation computing a running average score |
+| `06_airflow/` | Apache Airflow, orchestration | A real Airflow DAG (`extract >> transform >> load`) that runs the quiz-attempts ETL pipeline on a schedule with retries |
+| `07_cloud/` | AWS, GCP, Azure | Upload scripts that ship the quiz-attempts Parquet output to S3 / GCS / Blob Storage; the AWS one is verified against a mocked S3 bucket |
+| `08_batch_stream/` | Batch vs. stream processing | Runs the same quiz-attempts data through a batch job and a simulated stream job side by side to make the latency/consistency trade-off concrete |
 
 ## Quick start
 
@@ -51,7 +60,7 @@ python3 05_kafka/simulate_stream.py
 # python3 05_kafka/consumer.py --bootstrap-servers localhost:9092
 
 # 6. Airflow DAG (isolated install recommended -- see 06_airflow/README.md)
-# airflow standalone, then trigger the 'orders_etl' DAG from the UI
+# airflow standalone, then trigger the 'quiz_attempts_etl' DAG from the UI
 
 # 7. Cloud: AWS upload, tested against a mocked S3 bucket
 pip install boto3 moto
@@ -63,21 +72,30 @@ python3 08_batch_stream/compare_batch_vs_stream.py
 
 ## What's verified vs. reference-only
 
-Verified by actually running it while this repo was built:
-- `01_unix_shell/explore_data.sh`
-- `02_etl_pipeline/*` (full pipeline run, correct row quarantining)
-- `03_databases/*` (star schema built, aggregation query correct; NoSQL demo run)
-- `04_spark/spark_etl.py` (real PySpark job, local mode, matches pipeline results)
-- `05_kafka/simulate_stream.py` (broker-free simulation, correct running totals)
-- `06_airflow/dags/etl_dag.py` (ran through Airflow's real task engine end to end)
-- `07_cloud/aws_s3_upload.py` (verified against a mocked S3 bucket via moto)
-- `08_batch_stream/compare_batch_vs_stream.py`
+All labs were switched from a generic orders/e-commerce sample dataset to
+the quiz-attempts dataset described above. Re-verified end to end, on the
+new dataset, in the environment that made this change:
+- `01_unix_shell/explore_data.sh` (correct counts per category, correct grep/awk output)
+- `02_etl_pipeline/*` (10 raw → 7 clean / 3 rejected, correct quarantining, `score_percent` derived correctly)
+- `03_databases/build_warehouse.py` (star schema built from the ETL output; average-score-by-category query correct)
+- `05_kafka/simulate_stream.py` (broker-free simulation; correct running average score per category)
+- `08_batch_stream/compare_batch_vs_stream.py` (batch and stream averages agree)
 
-Provided as reference code, not executable in this environment:
+Rewritten to the same quiz-attempts dataset and pattern, but **not**
+re-executed after the change (this environment has no network access to
+install their dependencies -- `tinydb`, `pyspark`, `apache-airflow`,
+`boto3`/`moto`, `google-cloud-storage`, `azure-storage-blob`). Each follows
+the exact structure of the scripts above it depends on, so the logic should
+carry over, but run these yourself before relying on them for a demo:
+- `03_databases/nosql_demo.py` (needs `tinydb`)
+- `04_spark/spark_etl.py` (needs `pyspark` + Java)
+- `06_airflow/dags/etl_dag.py` (needs `apache-airflow`)
+- `07_cloud/aws_s3_upload.py` / `test_aws_s3_upload_with_moto.py` (needs `boto3`/`moto`)
+
+Provided as reference code, not executable in any sandbox:
 - `05_kafka/producer.py` / `consumer.py` — need a real Kafka broker
 - `07_cloud/gcp_gcs_upload.py` / `azure_blob_upload.py` — need real GCP/Azure
-  credentials (no free local emulator was available here); they follow the
-  exact same structure as the tested AWS script
+  credentials; they follow the exact same structure as the AWS script
 
 ## Why this exists
 

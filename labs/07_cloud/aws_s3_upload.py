@@ -1,5 +1,5 @@
 """
-Uploads the ETL pipeline's Parquet output (from 04_spark) to an S3 bucket,
+Uploads the ETL pipeline's Parquet output (quiz attempts, from 04_spark) to an S3 bucket,
 and reads it back — the pattern used to hand data off between pipeline
 stages or to downstream consumers (Redshift Spectrum, Athena, another team).
 
@@ -15,7 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 LOCAL_PARQUET_DIR = os.path.join(HERE, "..", "04_spark", "output_parquet")
 
 
-def upload_directory(bucket: str, local_dir: str, prefix: str = "orders/"):
+def upload_directory(bucket: str, local_dir: str, prefix: str = "quiz-attempts/"):
     s3 = boto3.client("s3")
     uploaded = []
     for root, _, files in os.walk(local_dir):
@@ -29,7 +29,7 @@ def upload_directory(bucket: str, local_dir: str, prefix: str = "orders/"):
     return uploaded
 
 
-def list_bucket(bucket: str, prefix: str = "orders/"):
+def list_bucket(bucket: str, prefix: str = "quiz-attempts/"):
     s3 = boto3.client("s3")
     resp = s3.list_objects_v2(Bucket=bucket, Prefix=prefix)
     keys = [obj["Key"] for obj in resp.get("Contents", [])]
@@ -48,7 +48,7 @@ def ensure_bucket(bucket: str, region: str = "us-east-1"):
 
 
 if __name__ == "__main__":
-    BUCKET = os.environ.get("DEMO_BUCKET", "data-engineering-labs-demo")
+    BUCKET = os.environ.get("DEMO_BUCKET", "quizeers-analytics-demo")
     ensure_bucket(BUCKET)
     upload_directory(BUCKET, LOCAL_PARQUET_DIR)
     print("[s3] objects now in bucket:", list_bucket(BUCKET))

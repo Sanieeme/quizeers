@@ -9,7 +9,7 @@ To run for real:
   3. Copy this file (and the 02_etl_pipeline/ package it imports from) into
      $AIRFLOW_HOME/dags/
   4. airflow standalone   # starts the scheduler + webserver + creates an admin user
-  5. Open http://localhost:8080, unpause the 'orders_etl' DAG, and trigger it.
+  5. Open http://localhost:8080, unpause the 'quiz_attempts_etl' DAG, and trigger it.
 """
 import os
 import sys
@@ -29,30 +29,30 @@ default_args = {
 }
 
 with DAG(
-    dag_id="orders_etl",
-    description="Extract, transform, and load daily order data into the warehouse.",
+    dag_id="quiz_attempts_etl",
+    description="Extract, transform, and load daily quiz-attempt data into the warehouse.",
     default_args=default_args,
     schedule="@daily",
     start_date=datetime(2026, 1, 1),
     catchup=False,
-    tags=["etl", "orders"],
+    tags=["etl", "quiz"],
 ) as dag:
 
     # Intermediate hand-off between tasks uses pickle files rather than XCom/JSON:
     # XCom is meant for small values (it's stored in the metadata DB), and JSON
-    # round-tripping a DataFrame loses exact dtypes/NaN-vs-None distinctions —
+    # round-tripping a DataFrame loses exact dtypes/NaN-vs-None distinctions --
     # pickle preserves the DataFrame exactly as transform.py expects it.
     def _extract(**context):
-        from extract import extract_orders
-        raw = extract_orders(os.path.join(ETL_PKG_DIR, "sample_data", "orders_raw.csv"))
+        from extract import extract_quiz_attempts
+        raw = extract_quiz_attempts(os.path.join(ETL_PKG_DIR, "sample_data", "quiz_attempts_raw.csv"))
         context["ti"].xcom_push(key="raw_row_count", value=len(raw))
         raw.to_pickle(os.path.join(ETL_PKG_DIR, "output", "_raw.pkl"))
 
     def _transform(**context):
         import pandas as pd
-        from transform import transform_orders
+        from transform import transform_quiz_attempts
         raw = pd.read_pickle(os.path.join(ETL_PKG_DIR, "output", "_raw.pkl"))
-        clean, rejected = transform_orders(raw)
+        clean, rejected = transform_quiz_attempts(raw)
         clean.to_pickle(os.path.join(ETL_PKG_DIR, "output", "_clean.pkl"))
         rejected.to_pickle(os.path.join(ETL_PKG_DIR, "output", "_rejected.pkl"))
         context["ti"].xcom_push(key="clean_row_count", value=len(clean))
@@ -60,14 +60,14 @@ with DAG(
 
     def _load(**context):
         import pandas as pd
-        from load import load_orders
+        from load import load_quiz_attempts
         clean = pd.read_pickle(os.path.join(ETL_PKG_DIR, "output", "_clean.pkl"))
         rejected = pd.read_pickle(os.path.join(ETL_PKG_DIR, "output", "_rejected.pkl"))
-        load_orders(clean, rejected, os.path.join(ETL_PKG_DIR, "output", "warehouse.db"))
+        load_quiz_attempts(clean, rejected, os.path.join(ETL_PKG_DIR, "output", "warehouse.db"))
 
     extract_task = PythonOperator(task_id="extract", python_callable=_extract)
     transform_task = PythonOperator(task_id="transform", python_callable=_transform)
     load_task = PythonOperator(task_id="load", python_callable=_load)
 
-    # Task dependency graph — the DAG this file is named for
+    # Task dependency graph -- the DAG this file is named for
     extract_task >> transform_task >> load_task
