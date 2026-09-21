@@ -127,3 +127,49 @@ other Flask route reference.
 - A lab with no quiz yet says so ("No matching quiz yet") rather than
   guessing a link — currently that's just the Week 6 (governance) and
   Week 9 (demo/presentation) syllabus weeks, which aren't quizzed.
+
+## Batch & stream processing design
+
+Batch and stream processing share most of the same transformation logic; the
+implementation below prefers a unified codebase (Spark) with different
+execution patterns for latency and throughput targets.
+
+- Ingest: Redpanda/Kafka for event streams (user events, quiz attempts,
+  external CDC topics). Batch sources (SFTP, bulk exports, DB snapshots)
+  land in an object store (S3/GCS) and are discovered by Airflow.
+- Stream processing: Apache Spark Structured Streaming (or Flink where
+  teams prefer) consumes Kafka topics with Avro/Protobuf schemas and
+  applies event-time windowing, watermarking, and stateful aggregations.
+  Use exactly-once semantics where supported and idempotent sinks.
+- Batch processing: Spark batch jobs orchestrated by Airflow run dbt for
+  analytics-model transformations, followed by aggregations and writes to
+  the analytics store on a nightly/hourly cadence.
+- Schema and contracts: Use a schema registry (Confluent/Apicurio) with
+  backward/forward-compatible Avro or Protobuf schemas; include schema
+  evolution rules in PR reviews and CI checks.
+- State & joins: For stream-table joins (enriched user/profile lookups)
+  use compacted topics for dimension tables or maintain local state stores
+  in the streaming engine; keep state TTLs and retention tuned to expected
+  window sizes.
+- Sinks: Write both batch and streaming outputs to the high-velocity store
+  (ClickHouse / Apache Pinot / Druid) for low-latency queries and to a
+  data warehouse (Snowflake/BigQuery/Redshift) for long-term analytics.
+- Observability: Emit processing metrics (throughput, lag, watermarks,
+  commit latency) to Prometheus/Grafana and capture lineage (OpenLineage)
+  from Airflow and dbt runs.
+- Operational notes: Use Airflow to schedule batch jobs, run health checks,
+  and trigger reconciliation jobs (re-process failed windows). Size Spark
+  clusters by peak throughput with autoscaling and use partitioning keys
+  aligned to query patterns for the analytics store.
+
+Example quick-start pattern:
+
+- Orchestrate nightly batch: Airflow DAG -> Spark job -> dbt models ->
+  write to analytics store.
+- Real-time path: Debezium -> Kafka topic (CDC) -> Spark Structured
+  Streaming job -> compacted topic + analytics store sink -> REST API
+  reads from analytics store for sub-second queries.
+
+This design balances developer velocity (single transformation language),
+operational reliability (Airflow + observability), and low-latency serving
+via a purpose-built analytics store.
