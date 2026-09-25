@@ -9,7 +9,7 @@ import time
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SOURCE_CSV = os.path.join(HERE, "..", "..", "02_etl_pipeline", "sample_data", "orders_raw.csv")
+SOURCE_CSV = os.path.join(HERE, "..", "..", "02_etl_pipeline", "sample_data", "quiz_attempts_raw.csv")
 
 
 def make_larger_dataset(n_repeats=2000):
